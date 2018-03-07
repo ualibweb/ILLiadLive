@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>Select Document Delivery Type</title>
+<link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/print.css" media="print" /> 
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="css/ie6_or_less.css" />
+<![endif]-->
+</head>
+<style>
+a.docDeliveryLink {
+	  text-decoration: underline;
+}
+</style>
+<body id="type-b">
+<div id="wrap">
+	<#INCLUDE filename="include_header.html">
+  	<div id="content-wrap">
+			<#INCLUDE filename="include_menu.html">
+    	<div id="content">
+		  <h1>Select document delivery type</h1>
+			
+				<!--<div>
+					<p><a id="intracampusDelivery" class="docDeliveryLink" href="https://ua.illiad.oclc.org/illiad/illiad.dll?Action=10&Form=21&docdelivery=true&intracampus=true">Intracampus Delivery</a></p>
+					<p>Click "Intracampus Delivery" to request an interlibrary loan item be delivered to your campus mailbox.  Only faculty may use this service.</p>
+				</div>
+				<br><br>-->
+				<div>
+					
+					<p><a id="docDeliveryCopy" class="docDeliveryLink" href="<#ACTION action="10" form="22">&docdelivery=true&catalog=true">Doc Delivery - Copy</a></p>
+					<p>Click "Doc Delivery - Copy" to request a photocopy of a book chapter or journal article we have in print (this includes Annex requests). </p>
+				</div>
+				<br><br>
+				<div>
+					<p><a id="docDeliveryLoan" class="docDeliveryLink" href="<#ACTION action="10" form="21">&docdelivery=true&catalog=true">Doc Delivery - Loan</a></p>
+					<p>Click "Doc Delivery - Loan" to request document delivery for items we have in print (this includes Annex requests). You can choose a pickup library for an item, or faculty can have items delivered to their campus mailbox via intracampus mail. </p>
+					
+				</div>
+			<#INCLUDE filename="include_footer.html">
+		</div>
+	</div>
+	<script>
+	var index = document.location.search.indexOf('value=SelectDocDeliveryType'); 
+	var querystring = document.location.search.substring(index); 
+	querystring = querystring.replace('value=SelectDocDeliveryType', '');
+	
+	console.log(querystring);
+	
+	var copyLink = document.querySelector('#docDeliveryCopy').getAttribute('href');
+	if (copyLink){
+		newQuerystring = querystring.replace('&loantitle', '&photojournaltitle');
+		newQuerystring = newQuerystring.replace('&loanauthor', '&photoarticleauthor');
+			
+		newQuerystring = newQuerystring.replace('&amp;loantitle', '&amp;photojournaltitle');
+		newQuerystring = newQuerystring.replace('&amp;loanauthor', '&amp;photoarticleauthor');
+
+		//newQuerystring = newQuerystring.replace(/&loan/gi, '&photoarticle');
+		console.log("newQueryString is");
+		console.log(newQuerystring);
+		
+		var newLink = copyLink + newQuerystring;
+		document.querySelector('#docDeliveryCopy').setAttribute('href', newLink);
+	}
+		
+	var loanLink = document.querySelector('#docDeliveryLoan').getAttribute('href');
+	if (loanLink){
+		var newLink = loanLink + querystring;
+		document.querySelector('#docDeliveryLoan').setAttribute('href', newLink);
+	}
+	
+	/*var intracampusLink = document.querySelector('#intracampusDelivery').getAttribute('href');
+	if (intracampusLink){
+		var newLink = copyLink + '&' querystring;
+		document.querySelector('#intracampusDelivery').setAttribute('href', newLink);
+	}*/
+	
+	</script>
+</div>	
+</body>
+</html>

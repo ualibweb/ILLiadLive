@@ -1,0 +1,323 @@
+<html>
+<head>
+<title>ILLiad - Photocopy Request</title>
+<link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="css/ie6_or_less.css" />
+<![endif]-->
+</head>
+<body id="type-b">
+<div id="wrap">
+  <#INCLUDE filename="include_header_request.html">
+  <div id="content-wrap">
+  	<#INCLUDE filename="include_menu.html">
+    <div id="content" style="display: none;">
+		<form id="ArticleRequestForm" action="illiad.dll" method="post" name="ArticleRequest" class="f-wrap-request">
+			<input type="hidden" name="ILLiadForm" value="ArticleRequest">
+			<input type="hidden" name="ItemInfo1" value="Article">
+			<input type="hidden" name="Username" value="<#PARAM name="Username">">
+			<input type="hidden" name="SessionID" value="<#PARAM name="SessionID">">
+				<div class="req"><b>*</b> Indicates required field</div>
+				<fieldset>			
+					<h3 id="pageHeader">Photocopy Request</h3>
+					<#STATUS>
+					<h2>Describe the item you want</h2>			
+					<label for="PhotoJournalTitle">
+						<span class="field">
+							<span class="req">*</span>
+							<span class="<#ERROR name="ERRORPhotoJournalTitle">"><b>Title (Journal, Book, Conference Proceedings, Anthology)</b></span><br />
+							<span class="note">Please do not abbreviate unless your citation is abbreviated</span>
+						</span>
+						<textarea id="PhotoJournalTitle" name="PhotoJournalTitle" rows="2" cols="40" class="f-name" ><#PARAM name="PhotoJournalTitle"></textarea><br />
+				</label>		
+						
+					<label for="PhotoJournalVolume">
+						<span class="field">
+							<span class="<#ERROR name="ERRORPhotoJournalVolume">"><b>Volume</b></span>
+						</span>
+						<input id="PhotoJournalVolume" name="PhotoJournalVolume" type="text" size="40" class="f-name"  value="<#PARAM name="PhotoJournalVolume">"><br />
+				</label>
+					
+					<label for="PhotoJournalIssue">
+						<span class="field">
+							<span class="<#ERROR name="ERRORPhotoJournalIssue">"><b>Issue Number or Designation</b></span>
+						</span>
+						<input id="PhotoJournalIssue" name="PhotoJournalIssue" type="text" size="40" class="f-name"  value="<#PARAM name="PhotoJournalIssue">"><br />
+				</label>
+
+					<label for="PhotoJournalMonth">
+						<span class="field">
+							<span class="<#ERROR name="ERRORPhotoJournalMonth">"><b>Month</b></span>
+						</span>
+						<input id="PhotoJournalMonth" name="PhotoJournalMonth" type="text" size="40" class="f-name"  value="<#PARAM name="PhotoJournalMonth">"><br />
+				</label>
+					
+					<label for="PhotoJournalYear">
+						<span class="field">
+							<span class="req">*</span>
+							<span class="<#ERROR name="ERRORPhotoJournalYear">"><b>Year</b></span>
+						</span>
+						<input id="PhotoJournalYear" name="PhotoJournalYear" type="text" size="40" class="f-name"  value="<#PARAM name="PhotoJournalYear">"><br />
+				</label>
+					
+					<label for="PhotoJournalInclusivePages">
+						<span class="field">
+							<span class="req">*</span>
+							<span class="<#ERROR name="ERRORPhotoJournalInclusivePages">"><b>Inclusive Pages</b></span>
+						</span>
+						<input id="PhotoJournalInclusivePages" name="PhotoJournalInclusivePages" type="text" size="40" class="f-name"  value="<#PARAM name="PhotoJournalInclusivePages">"><br />
+				</label>
+					
+					<label for="ISSN">
+						<span class="field">
+							<span class="<#ERROR name="ERRORISSN">"><b>ISSN/ISBN (International Standard Serial/Book Number)</b></span><br />
+							<span class="note">If given will speed request processing</span>
+						</span>
+						<input id="ISSN" name="ISSN" type="text" size="20" class="f-name"  value="<#PARAM name="ISSN">"><br />
+				</label>
+					
+					<label for="CallNumber">
+						<span class="field">
+						 <span class="req">*</span>
+							<span class="<#ERROR name="ERRORCallNumber">"><b>Call Number</b></span>
+						</span>
+						<input id="CallNumber" name="CallNumber" type="text" size="20" class="f-name"  value="<#PARAM name="CallNumber">"><br />
+				</label>
+					
+					<label for="ESPNumber">
+						<span class="field">
+							<span class="<#ERROR name="ERRORESPNumber">"><b>OCLC or Docline UI Number</b></span>
+						</span>
+						<input id="ESPNumber" name="ESPNumber" type="text" size="20" class="f-name"  value="<#PARAM name="ESPNumber">"><br />
+				</label>
+					
+					<label for="PhotoArticleAuthor">
+						<span class="field">
+							<span class="<#ERROR name="ERRORPhotoArticleAuthor">"><b>Article or Chapter Author</b></span>
+						</span>
+						<input id="PhotoArticleAuthor" name="PhotoArticleAuthor" type="text" size="40" class="f-name"  value="<#PARAM name="PhotoArticleAuthor">"><br />
+				</label>
+					
+					<label for="PhotoArticleTitle">
+						<span class="field">
+							<span class="req">*</span>
+							<span class="<#ERROR name="ERRORPhotoArticleTitle">"><b>Article or Chapter Title</b></span>
+						</span>
+						<textarea id="PhotoArticleTitle" name="PhotoArticleTitle" rows="2" cols="40" class="f-name" ><#PARAM name="PhotoArticleTitle"></textarea><br />
+				</label>
+							
+					<label for="NotWantedAfter">
+						<span class="field">
+							<span class="req">*</span>
+							<span class="<#ERROR name="ERRORNotWantedAfter">"><b>Not Wanted After Date</b></span><br />
+							<span class="note">(MM/DD/YYYY)</span>
+						</span>
+						<input id="NotWantedAfter" name="NotWantedAfter" type="text" size="40" class="f-name"  value="<#PARAM name="NotWantedAfter">"><br />
+				</label>
+					
+					<label for="AcceptNonEnglish">
+						<span class="field">
+										<span class="req">*</span><span class="<#ERROR name="ERRORAcceptNonEnglish">"><b>Will you accept the item in a language other than English?</b></span><br />
+							<span class="note">If yes, specify acceptable languages in the notes field.</span>
+						</span>
+						<select id="AcceptNonEnglish" name="AcceptNonEnglish" size="1" class="f-name" >
+							<option selected><#PARAM name="AcceptNonEnglish"></option>
+							<option>No</option>
+							<option>Yes</option>
+						</select><br />
+				</label>
+					
+					
+					
+					<label for="Notes">
+						<span class="field">
+							<span class="<#ERROR name="ERRORNotes">"><b>Notes</b></span><br />
+							<span class="note">Put any information here that may help us find the item, as well as any other pertinent information.</span>
+						</span>
+						<textarea id="Notes" name="Notes" rows="2" cols="40" class="f-name" ><#PARAM name="Notes"></textarea><br />
+				</label>
+				
+				<label for="ItemInfo2" style="display: none;">
+						<span class="field">
+							<span class="req">*</span>
+							<span class="valid"><b>Are you a faculty member or graduate student?</b></span>
+							<br>
+							<!--<span class="note">You must be a faculty member or graduate student to use this service.</span>-->
+						</span>
+					
+						<select id="ItemInfo2" name="ItemInfo2">
+							<option selected></option>
+							<option>Faculty</option>
+							<option>Graduate student</option>
+							<option>Neither</option>
+						</select>
+					</label>
+					<br>
+					
+					<#INCLUDE filename="include_request_cited.html">                
+                    <#INCLUDE filename="include_request_buttons.html">
+				</fieldset>
+				
+				
+				<script>
+				/*
+					function createCookie(name,value,seconds) {
+							if (seconds) {
+									var date = new Date();
+									date.setTime(date.getTime()+(seconds*1000));
+									var expires = "; expires="+date.toGMTString();
+							}
+							else var expires = "";
+							document.cookie = name+"="+value+expires+"; path=/";
+							console.log("DOCUMENT COOKIE IS");
+							console.log(document.cookie);
+					}
+
+					function readCookie(name) {
+							var nameEQ = name + "=";
+							var ca = document.cookie.split(';');
+							for(var i=0;i < ca.length;i++) {
+									var c = ca[i];
+									while (c.charAt(0)==' ') c = c.substring(1,c.length);
+									if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+							}
+							return null;
+					}
+
+					function eraseCookie(name) {
+							createCookie(name,"",-1);
+					}
+
+					function checkCookie(name)
+					{
+							return readCookie(name) != null;
+					}*/
+
+				</script>
+				<script>
+					console.log("VANILLA JS");
+					var content = document.querySelector('#content'); 
+					content.setAttribute('display', 'block');
+				</script>
+				<script>
+				$(document).ready(function(){
+				
+				   var parameters = decodeURIComponent(document.location.search); 
+					 console.log(parameters);
+
+					 if ((parameters.indexOf('docdelivery=true') != -1)){
+							//$('label[for="Notes"]').css('display', 'none');
+							
+							$('#requestCited').css('display', 'none');
+							
+							$('input[name="ItemInfo1"]').attr('value', 'DocDeliveryPublic');
+							
+							//If both catalog and document delivery parameters are present, add doc delivery to form for automatic routing
+							if ((parameters.indexOf('catalog=true') != -1)){
+								$('input[name="ItemInfo1"]').attr('value', 'DocDelivery');
+								console.log("Catalog param found");
+							}
+							else{
+							  console.log("Catalog param NOT found");
+							}
+							
+							//Hide buttons that no longer work
+							//$('input[name="ResetButton"]').css('display', 'none');
+							$('input[value^="Cancel"]').css('display', 'none');
+							
+							
+							$('#pageHeader').html("Document Delivery - Copy (UA Libraries Collection)");
+							$('#pageHeader').after('<p id="pageIntroduction">Use this form to request a photocopy of an article from a journal we have in print or a book chapter from a book we have in print (this includes Annex requests). </p>');
+							$('label[for="ItemInfo2"]').css('display', 'block');
+							
+							//Fields that don't need shown
+							$('label[for="ESPNumber"]').css('display', 'none');
+						
+							
+
+							$('#ArticleRequestForm').submit(function(event){
+	
+  							 var requiredFields = ['PhotoJournalTitle', 'PhotoJournalYear', 'PhotoJournalInclusivePages', 'PhotoArticleTitle', 'NotWantedAfter', 'ItemInfo2', 'AcceptNonEnglish', 'CallNumber']; 
+								 var missingFields = []; 
+								 
+								 for (i = 0; i < requiredFields.length; i++){
+										currentField = requiredFields[i];
+										currentContent = $('#' + currentField).val();
+										
+										//console.log("CURRENT FIELD IS");
+										//console.log(currentField);
+										
+										//console.log("CURRENT CONTENT IS");
+										//console.log(currentContent);
+										
+										if (currentField == 'ItemInfo2'){
+											if ((currentContent == '') || (currentContent == 'No')){
+												missingFields.push(currentField);
+											}
+										}
+										else if (currentContent == ''){											
+											console.log("FORM UNFILLED!");
+											missingFields.push(currentField);
+											
+										}		
+								 }
+
+								if (missingFields.length > 0){
+									 for (i = 0; i < missingFields.length; i++){
+											missingField = missingFields[i];
+											//var errorHTML = '<p style="color: red;">This field is required!</p>';
+											$('label[for="' + missingField + '"] span.valid').addClass('validationError').removeClass('valid');
+										}
+									 topErrorMessage = '<p style="color: red;">Required fields are missing.</p>';
+									 
+									 console.log("MISSING FIELDS ARRAY");
+									 console.log(missingFields);
+									 /*
+									 if (missingFields.indexOf('ItemInfo2') != -1){
+									 
+											//TODO: Remove if statement if redundant (as it currently is)
+											
+											if (missingFields.length == 1){
+												topErrorMessage += '<p style="color: red;">You must specify whether you are a faculty member or graduate student.</p>';  
+											}
+											else {
+												topErrorMessage += '<p style="color: red;">You must specify whether you are a faculty member or graduate student.</p>' 
+											}
+									 }*/
+									 
+									 topErrorMessage += "</div>";
+									 
+									 console.log("TOP ERROR MESSAGE IS");
+									 console.log(topErrorMessage);
+									 if ($('#TopErrorMessage').length == 0){
+										 topErrorMessage = '<div id="TopErrorMessage">' + topErrorMessage + '</div>';
+										 $('#pageIntroduction').after(topErrorMessage);
+									 }
+									 else {
+									  $('#TopErrorMessage').html('');
+										$('#TopErrorMessage').html(topErrorMessage);
+									 }
+									 
+									 return false;						 
+								 }					
+						});
+					 }
+					 else {
+							$('label[for="CallNumber"] span.req').css('display', 'none');
+					 }
+					
+					 $('#content').css('display', 'block');
+	
+				});
+				
+				</script>
+			
+		</form>		
+      	<#INCLUDE filename="include_footer.html">
+    </div>    
+  </div>
+</div>
+</body>
+</html>
