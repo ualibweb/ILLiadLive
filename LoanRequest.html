@@ -301,7 +301,7 @@
 <script>
 $(document).ready(function(){
 
-					var parameters = decodeURIComponent(document.location.search)
+					var parameters = decodeURIComponent(document.location.search);
 					
 					//Set required fields
 					
@@ -322,6 +322,8 @@ $(document).ready(function(){
 					 
 							//Pickup library is ItemInfo4
 							function pickupLibraryFadeIn(note){
+							
+									console.log("Pickup Library Fade In");
 									
 									$('#ItemInfo4').fadeIn(500);
 									$('#ItemInfo4Note').fadeOut(500);
@@ -335,8 +337,14 @@ $(document).ready(function(){
 							
 							//Pickup library is ItemInfo4
 							function pickupLibraryFadeOut(note){
+							
+									console.log("Pickup Library Fade Out");
 									
 									$('#ItemInfo4').fadeOut(500);
+									$('#ItemInfo4').val(function(index,value){
+										return '';
+									});
+									
 									$('#ItemInfo4Req').hide();
 									
 									if (note == true){
@@ -345,6 +353,7 @@ $(document).ready(function(){
 									else if (note == false){
 										$('#ItemInfo4Note').fadeOut(500);
 									}
+												
 									
 									$('#ItemInfo4Text').removeClass('validationError').addClass('valid');
 									var fieldIndex = requiredFields.indexOf('ItemInfo4');
@@ -389,27 +398,42 @@ $(document).ready(function(){
 										console.log("annex value is " + annexValue); 
 										if ((serialLoanValue != 'Yes') || (annexValue == 'Yes')){
 											$('label[for="ItemInfo3"]').fadeIn(500);
-											$('label[for="ItemInfo4"]').fadeIn(500);
+											pickupLibraryFadeIn();
 										}
 								}		
 								else if ($(this).val() == 'Graduate student'){
 										console.log("HITS GRAD STUDENT");
 										$('label[for="ItemInfo3"]').fadeOut(500);
+										
+										$('#ItemInfo3').val(function(index,value){
+											return '';
+										});
+										
 										if ((serialLoanValue != 'Yes') || (annexValue == 'Yes')){
-											$('label[for="ItemInfo4"]').fadeIn(500);
+										  console.log("FADE IN");
+											pickupLibraryFadeIn();
 										}
 								}
 								else if ($(this).val() == 'Neither'){
-										$('label[for="ItemInfo3"]').fadeOut(500);	
+										$('label[for="ItemInfo3"]').fadeOut(500);
 
-										if (annexValue == 'Yes'){										
-											$('label[for="ItemInfo4"]').fadeIn(500);
+										$('#ItemInfo3').val(function(index,value){
+											return '';
+										});										
+
+										if ((serialLoanValue != 'Yes') || (annexValue == 'Yes')){									
+											pickupLibraryFadeIn();
 										}									
 								}
 								else {
 										$('label[for="ItemInfo3"]').fadeOut(500);
-										if (annexValue == 'Yes'){										
-											$('label[for="ItemInfo4"]').fadeIn(500);
+										
+										$('#ItemInfo3').val(function(index,value){
+											return '';
+										});
+										
+										if ((serialLoanValue != 'Yes') || (annexValue == 'Yes')){									
+											pickupLibraryFadeIn();
 										}		
 								}
 								
@@ -467,6 +491,9 @@ $(document).ready(function(){
 										if ($('#ItemInfo3').val() == ''){
 											pickupLibraryFadeIn();
 										}
+										else {
+											//$('#ItemInfo4Note').fadeOut(500);
+										}
 									}
 									else{
 										pickupLibraryFadeIn();
@@ -495,6 +522,11 @@ $(document).ready(function(){
 									if (serialLoanValue == 'Yes'){
 										pickupLibraryFadeOut(true);
 										$('label[for="ItemInfo3"]').fadeOut(500);
+										
+										$('#ItemInfo3').val(function(index,value){
+											return '';
+										});
+										
 									}
 									else {
 										//Show pickup library unless user is faculty and they filled in campus mailbox
@@ -547,6 +579,11 @@ $(document).ready(function(){
 										console.log("TEST YES");
 										pickupLibraryFadeOut(true);
 										$('label[for="ItemInfo3"]').fadeOut(500);
+										
+										$('#ItemInfo3').val(function(index,value){
+											return '';
+										});
+										
 									}
 									else{
 									//else just for debugging
@@ -665,28 +702,25 @@ $(document).ready(function(){
 											var notesValue = $('#Notes').val();
 											var facOrGradValue = $('#facOrGrad').val();
 
-											var facOrGradIndex = notesValue.indexOf('Faculty request / ')
-											
-											if (facOrGradIndex != -1){		
-											  
-												notesValue = notesValue.slice(0, facOrGradIndex);
-							
-											}
-											else {
-												facOrGradIndex = notesValue.indexOf('Graduate student request / ')
-												if (facOrGradIndex != -1){		
-													 
-													 notesValue = notesValue.slice(0, facOrGradIndex);
+											if (facOrGradValue == 'Faculty'){
+												var facOrGradIndex = notesValue.indexOf('Faculty request / ');
+												
+												if (facOrGradIndex == -1){		
+													
+													notesValue = 'Faculty request / ' + notesValue; 
+								
 												}
 											}
-			
-											if (facOrGradValue == 'Faculty'){
-													notesValue = 'Faculty request / ' + notesValue; 
+											else {
+												if (facOrGradValue == 'Graduate student request'){
+
+													facOrGradIndex = notesValue.indexOf('Graduate student request / ');
+													if (facOrGradIndex == -1){		
+														notesValue = 'Faculty request / ' + notesValue; 
+													}
+												}
 											}
-											else if (facOrGradValue == 'Graduate student'){
-													notesValue = 'Graduate student request / ' + notesValue; 
-											}
-												
+															
 											return notesValue;
 									});
 								}

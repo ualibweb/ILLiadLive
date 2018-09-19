@@ -293,9 +293,11 @@
 										
 			$(document).ready(function(){
 			
-					
+					 
 							//Pickup library is ItemInfo4
 							function pickupLibraryFadeIn(note){
+							
+									console.log("Pickup Library Fade In");
 									
 									$('#ItemInfo4').fadeIn(500);
 									$('#ItemInfo4Note').fadeOut(500);
@@ -303,14 +305,20 @@
 									var fieldIndex = requiredFields.indexOf('ItemInfo4');
 									if ((fieldIndex < 0) && ($('#ItemInfo3').val() == '')){
 										requiredFields.push('ItemInfo4');
-										//$('#ItemInfo4Req').show();
+										$('#ItemInfo4Req').show();
 									}
 							}
 							
 							//Pickup library is ItemInfo4
 							function pickupLibraryFadeOut(note){
+							
+									console.log("Pickup Library Fade Out");
 									
 									$('#ItemInfo4').fadeOut(500);
+									$('#ItemInfo4').val(function(index,value){
+										return '';
+									});
+									
 									$('#ItemInfo4Req').hide();
 									
 									if (note == true){
@@ -319,6 +327,7 @@
 									else if (note == false){
 										$('#ItemInfo4Note').fadeOut(500);
 									}
+												
 									
 									$('#ItemInfo4Text').removeClass('validationError').addClass('valid');
 									var fieldIndex = requiredFields.indexOf('ItemInfo4');
@@ -326,7 +335,6 @@
 										requiredFields.splice(fieldIndex, 1);
 									}
 							}
-					 		
  
 				requiredFields = ['LoanTitle', 'LoanAuthor', 'NotWantedAfter', 'AcceptNonEnglish']; 
 				
@@ -382,27 +390,42 @@
 										console.log("annex value is " + annexValue); 
 										if ((serialLoanValue != 'Yes') || (annexValue == 'Yes')){
 											$('label[for="ItemInfo3"]').fadeIn(500);
-											$('label[for="ItemInfo4"]').fadeIn(500);
+											pickupLibraryFadeIn();
 										}
 								}		
 								else if ($(this).val() == 'Graduate student'){
 										console.log("HITS GRAD STUDENT");
 										$('label[for="ItemInfo3"]').fadeOut(500);
+										
+										$('#ItemInfo3').val(function(index,value){
+											return '';
+										});
+										
 										if ((serialLoanValue != 'Yes') || (annexValue == 'Yes')){
-											$('label[for="ItemInfo4"]').fadeIn(500);
+										  console.log("FADE IN");
+											pickupLibraryFadeIn();
 										}
 								}
 								else if ($(this).val() == 'Neither'){
-										$('label[for="ItemInfo3"]').fadeOut(500);	
+										$('label[for="ItemInfo3"]').fadeOut(500);
 
-										if (annexValue == 'Yes'){										
-											$('label[for="ItemInfo4"]').fadeIn(500);
+										$('#ItemInfo3').val(function(index,value){
+											return '';
+										});										
+
+										if ((serialLoanValue != 'Yes') || (annexValue == 'Yes')){									
+											pickupLibraryFadeIn();
 										}									
 								}
 								else {
 										$('label[for="ItemInfo3"]').fadeOut(500);
-										if (annexValue == 'Yes'){										
-											$('label[for="ItemInfo4"]').fadeIn(500);
+										
+										$('#ItemInfo3').val(function(index,value){
+											return '';
+										});
+										
+										if ((serialLoanValue != 'Yes') || (annexValue == 'Yes')){									
+											pickupLibraryFadeIn();
 										}		
 								}
 								
@@ -460,6 +483,9 @@
 										if ($('#ItemInfo3').val() == ''){
 											pickupLibraryFadeIn();
 										}
+										else {
+											//$('#ItemInfo4Note').fadeOut(500);
+										}
 									}
 									else{
 										pickupLibraryFadeIn();
@@ -488,6 +514,11 @@
 									if (serialLoanValue == 'Yes'){
 										pickupLibraryFadeOut(true);
 										$('label[for="ItemInfo3"]').fadeOut(500);
+										
+										$('#ItemInfo3').val(function(index,value){
+											return '';
+										});
+										
 									}
 									else {
 										//Show pickup library unless user is faculty and they filled in campus mailbox
@@ -540,6 +571,11 @@
 										console.log("TEST YES");
 										pickupLibraryFadeOut(true);
 										$('label[for="ItemInfo3"]').fadeOut(500);
+										
+										$('#ItemInfo3').val(function(index,value){
+											return '';
+										});
+										
 									}
 									else{
 									//else just for debugging
@@ -650,121 +686,114 @@
 					 
 					$('#EditLoanRequest').submit(function(event){
 							
-							if (docDelivery == true){
-								$('#Notes').val(function(index, value){
-								
-								 //Cram fac/grad value into Notes field when form is submitted
-									var notesValue = $('#Notes').val();
-									var facOrGradValue = $('#facOrGrad').val();
-
-									var facOrGradIndex = notesValue.indexOf('Faculty request / ')
-									
-									if (facOrGradIndex != -1){		
+							
+									if (docDelivery == true){
+										$('#Notes').val(function(index, value){
 										
-										notesValue = notesValue.slice(0, facOrGradIndex);
-					
+										 //Cram fac/grad value into Notes field when form is submitted
+											var notesValue = $('#Notes').val();
+											var facOrGradValue = $('#facOrGrad').val();
+
+											if (facOrGradValue == 'Faculty'){
+												var facOrGradIndex = notesValue.indexOf('Faculty request / ');
+												
+												if (facOrGradIndex == -1){		
+													
+													notesValue = 'Faculty request / ' + notesValue; 
+								
+												}
+											}
+											else {
+												if (facOrGradValue == 'Graduate student request'){
+
+													facOrGradIndex = notesValue.indexOf('Graduate student request / ');
+													if (facOrGradIndex == -1){		
+														notesValue = 'Faculty request / ' + notesValue; 
+													}
+												}
+											}
+															
+											return notesValue;
+										});										
 									}
-									else {
-										facOrGradIndex = notesValue.indexOf('Graduate student request / ')
-										if (facOrGradIndex != -1){		
-											 
-											 notesValue = notesValue.slice(0, facOrGradIndex);
+								
+								 var missingFields = []; 
+								 
+								 //Check for validation errors
+								 for (i = 0; i < requiredFields.length; i++){
+										currentField = requiredFields[i];
+										currentContent = $('#' + currentField).val();
+										
+										//console.log("CURRENT FIELD IS");
+										//console.log(currentField);
+										
+										//console.log("CURRENT CONTENT IS");
+										//console.log(currentContent);
+										
+										if (currentContent == ''){											
+											console.log("FORM UNFILLED!");
+											missingFields.push(currentField);
+											$('label[for="' + currentField + '"] span.valid').addClass('validationError').removeClass('valid');
+										}		
+										else {
+											$('label[for="' + currentField + '"] span.validationError').addClass('valid').removeClass('validationError');
+										}
+								 }
+								 //testCounter = 0;
+								 
+								 //Empty fields that are hidden
+								 $('#LoanRequestForm > fieldset > label').each(function(index){
+									var displayAttr = $(this).attr('style');
+									
+									if (displayAttr != undefined){
+									  
+										if (displayAttr.indexOf('display: none') != -1 ){
+										  //testCounter++;
+										  console.log("DISPLAY ATTRIBUTE PRESENT");
+										  $(this).find('input').val(function(index, value){
+											  console.log("SETTING INPUT");
+												return '';
+											});
+											$(this).find('select').val(function(index, value){
+											  console.log("SETTING SELECT");
+												return '';
+											});
+											$(this).find('textarea').val(function(index, value){
+											  console.log("SETTING TEXTAREA");
+												return '';
+											});
+											
 										}
 									}
+								});
+								
+								//console.log("TEST COUNTER IS ");
+								//console.log(testCounter);
+								
 
-									if (facOrGradValue == 'Faculty'){
-											notesValue = 'Faculty request / ' + notesValue; 
-									}
-									else if (facOrGradValue == 'Graduate student'){
-											notesValue = 'Graduate student request / ' + notesValue; 
-									}
-										
-									return notesValue;
-							});
-						}
-						
-						 var missingFields = []; 
-						 
-						 for (i = 0; i < requiredFields.length; i++){
-								currentField = requiredFields[i];
-								currentContent = $('#' + currentField).val();
-								
-								//console.log("CURRENT FIELD IS");
-								//console.log(currentField);
-								
-								//console.log("CURRENT CONTENT IS");
-								//console.log(currentContent);
-								
-								if (currentField == 'facOrGrad'){
-									if ((currentContent == '') || (currentContent == 'No')){
-										missingFields.push(currentField);
-										$('label[for="' + currentField + '"] span.valid').addClass('validationError').removeClass('valid');
-									}
-								}
-								else if (currentContent == ''){											
-									console.log("FORM UNFILLED!");
-									missingFields.push(currentField);
-									$('label[for="' + currentField + '"] span.valid').addClass('validationError').removeClass('valid');
-								}		
-								else {
-									$('label[for="' + currentField + '"] span.validationError').addClass('valid').removeClass('validationError');
-								}
-						 }
-						 //testCounter = 0;
-						 
-						 //Empty fields that are hidden
-						 $('#LoanRequestForm > fieldset > label').each(function(index){
-							var displayAttr = $(this).attr('style');
-							
-							if (displayAttr != undefined){
-								
-								if (displayAttr.indexOf('display: none') != -1 ){
-									//testCounter++;
-									console.log("DISPLAY ATTRIBUTE PRESENT");
-									$(this).find('input').val(function(index, value){
-										console.log("SETTING INPUT");
-										return '';
-									});
-									$(this).find('select').val(function(index, value){
-										console.log("SETTING SELECT");
-										return '';
-									});
-									$(this).find('textarea').val(function(index, value){
-										console.log("SETTING TEXTAREA");
-										return '';
-									});
+								if (missingFields.length > 0){
 									
-								}
-							}
-						});
-						
-						//console.log("TEST COUNTER IS ");
-						//console.log(testCounter);
-						
-
-						if (missingFields.length > 0){
-							
-							 topErrorMessage = '<p style="color: red;">Required fields are missing.</p>';
-							 
-							 console.log("MISSING FIELDS ARRAY");
-							 console.log(missingFields);
-							
-							 topErrorMessage += "</div>";
-							 
-							 console.log("TOP ERROR MESSAGE IS");
-							 console.log(topErrorMessage);
-							 if ($('#TopErrorMessage').length == 0){
-								 topErrorMessage = '<div id="TopErrorMessage">' + topErrorMessage + '</div>';
-								 $('#pageHeader').after(topErrorMessage);
-							 }
-							 else {
-								$('#TopErrorMessage').html('');
-								$('#TopErrorMessage').html(topErrorMessage);
-							 }
-							 
-							 console.log("RETURNING FALSE");
-							 return false;						 
-						 }	
+									 topErrorMessage = '<p style="color: red;">Required fields are missing.</p>';
+									 
+									 console.log("MISSING FIELDS ARRAY");
+									 console.log(missingFields);
+									
+									 topErrorMessage += "</div>";
+									 
+									 console.log("TOP ERROR MESSAGE IS");
+									 console.log(topErrorMessage);
+									 if ($('#TopErrorMessage').length == 0){
+										 topErrorMessage = '<div id="TopErrorMessage">' + topErrorMessage + '</div>';
+										 $('#pageHeader').after(topErrorMessage);
+									 }
+									 else {
+									  $('#TopErrorMessage').html('');
+										$('#TopErrorMessage').html(topErrorMessage);
+									 }
+									 
+									 console.log("RETURNING FALSE");
+									 return false;						 
+								 }	
 
 						
 				});
