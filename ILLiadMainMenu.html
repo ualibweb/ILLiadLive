@@ -3,6 +3,7 @@
 <title>ILLiad Main Menu</title>
 <link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="css/print.css" media="print" /> 
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
 <!--[if lte IE 6]>
 <link rel="stylesheet" type="text/css" href="css/ie6_or_less.css" />
 <![endif]-->
@@ -15,11 +16,15 @@
     <div id="content-wrap">
         <#INCLUDE filename="include_menu.html">
         <div id="content">
-            <div class="default-table">
-                <#TABLE name="ViewOutstandingRequests" headerText="Outstanding Requests" noDataAction="ShowMessageRow" noDataMessage="No Requests" column="TransactionNumber:Transaction" column="DocumentType:Type" column="Title" column="Author" column="TransactionStatus:Status">
+            <div class="default-table" id="actualTable">
+							<#TABLE name="ViewOutstandingRequests" headerText="Outstanding Requests" noDataAction="ShowMessageRow" noDataMessage="No Requests" column="TransactionNumber:Transaction" column="DocumentType:Type" column="Title" column="Author" column="TransactionStatus:Status">
             </div>
-            <#INCLUDE filename="include_footer.html">
-        </div>
+						<div class="default-table" id="testTable" style="display: none;">
+						  <#TABLE name="ViewOutstandingRequests" headerText="Outstanding Requests" noDataAction="ShowMessageRow" noDataMessage="No Requests"  column="ItemInfo1:ItemInfo1">
+						</div>
+						<#INCLUDE filename="include_footer.html">
+				</div>
+						  
         <div id="sidebar">
 			<a href="<#ACTION action="2" type="40" value="RSSID" valueType="lookup" absolutePath="false" includeSessionID="false">">Subscribe to Alerts Feed</a>
             <br />
@@ -27,6 +32,18 @@
 		</div>
     </div>
 </body>
+<script>
+/*
+var testTableLength = $('#testTable table tr').length;
+for (i = 2; i < testTableLength; i++){
+	$('#testTable table tr').eq(i).children().each(function(index,value){
+		if (($(this).html() == 'DocDelivery') || ($(this).html() == 'DocDeliveryPublic')){
+			$('#actualTable table tr').eq(i).children().eq(1).html('Doc Delivery');
+		}
+	});
+}*/
+
+</script>
 </html>
 
 

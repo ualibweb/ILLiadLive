@@ -154,7 +154,7 @@
 										$(document).ready(function(){
 											 console.log("JQUERY LOADS!");
 											 var docDeliveryStatus = $('input#ItemInfo1').attr('value');
-											 if (docDeliveryStatus == 'DocDelivery'){
+											 if ((docDeliveryStatus == 'DocDelivery') || (docDeliveryStatus == 'DocDeliveryPublic' )){
 													$('#requestCited').css('display', 'none');
 													$('#pageHeader').html("Edit Document Delivery Request -- photocopy");
 													$('#pageHeader').after('<p id="pageIntroduction">Edit your document delivery request here.  You must be a faculty member or graduate student to use this service.</p>');

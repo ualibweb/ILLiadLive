@@ -14,7 +14,7 @@
     <div id="content-wrap">
 		<#INCLUDE filename="include_menu.html">
         <div id="content" style="display: none;">
-            <form action="illiad.dll" method="post" name="EditLoanRequest" class="f-wrap-request">
+            <form action="illiad.dll" id="EditLoanRequest" method="post" name="EditLoanRequest" class="f-wrap-request">
                 <input type="hidden" name="ILLiadForm" value="EditLoanRequest">
                 <input type="hidden" name="Username" value="<#PARAM name="Username">">
                 <input type="hidden" name="SessionID" value="<#PARAM name="SessionID">">
@@ -24,19 +24,34 @@
                 	<h3 id="pageHeader">Edit Loan Request (Including Multimedia)</h3>
 					<#STATUS>
                 	<h2>Describe the item you want</h2>
+                	<label style="display: none;" for="itemInfo2">
+										<span class="field">
+										<span>
+											<b>Serial loan request</b><br>
+											<span class="note">Indicate if you would like to make a loan request for a serial. </span>
+										</span>
+										</span>
+                		<select id="itemInfo2" name="itemInfo2">
+										  <option selected><#PARAM name="ItemInfo2"></option>
+											<option>Yes</option>
+											<option>No</option>
+										</select><br />
+               	 </label>
+									
+									
                 	<label for="LoanAuthor">
 						<span class="field">
-							<span class="req">*</span>
+                			<span class="req">*</span>
 							<span class="<#ERROR name="ERRORLoanAuthor">"><b>Author/Editors</b></span>
 						</span>
                 		<input id="LoanAuthor" name="LoanAuthor" type="text" size="40" class="f-name"  value="<#PARAM name="LoanAuthor">"><br />
                	</label>
                 	
 					<label for="LoanTitle">
-						<span class="field">
+                		<span class="field">
 							<span class="req">*</span>
 							<span class="<#ERROR name="ERRORLoanTitle">"><b>Title</b></span><br />
-							<span class="note">We do not process requests for textbooks.</span>
+                			<span class="note">We do not process requests for textbooks.</span>
 						</span>
                 		<textarea id="LoanTitle" name="LoanTitle" rows="2" cols="40" class="f-name" ><#PARAM name="LoanTitle"></textarea><br />
                	</label>
@@ -56,8 +71,8 @@
                	</label>
 					
                 	<label for="LoanDate">
-						<span class="field">
-                			<span class="<#ERROR name="ERRORLoanDate">"><b>Date of Publication</b></span>
+                		<span class="field">
+							<span class="<#ERROR name="ERRORLoanDate">"><b>Date of Publication</b></span>
 						</span>
                 		<input id="LoanDate" name="LoanDate" type="text" size="40" class="f-name"  value="<#PARAM name="LoanDate">"><br />
                	</label>
@@ -68,18 +83,60 @@
 						</span>
                 		<input id="LoanEdition" name="LoanEdition" type="text" size="40" class="f-name"  value="<#PARAM name="LoanEdition">"><br />
                	</label>
+								
+								<!--<label for="PhotoJournalTitle" style="display: none;">
+						<span class="field">
+							<span class="req">*</span>
+							<span class="<#ERROR name="ERRORPhotoJournalTitle">"><b>Title (Journal, Conference Proceedings, Anthology)</b></span><br />
+							<span class="note">Please do not abbreviate unless your citation is abbreviated</span>
+						</span>
+						<textarea id="PhotoJournalTitle" name="PhotoJournalTitle" rows="2" cols="40" class="f-name" ><#PARAM name="PhotoJournalTitle"></textarea><br />
+				</label>		-->
+						
+					<label for="PhotoJournalVolume" style="display: none;">
+						<span class="field">
+							<span class="<#ERROR name="ERRORPhotoJournalVolume">"><b>Volume</b></span>
+						</span>
+						<input id="PhotoJournalVolume" name="PhotoJournalVolume" type="text" size="40" class="f-name"  value="<#PARAM name="PhotoJournalVolume">"><br />
+				</label>
+					
+					<label for="PhotoJournalIssue" style="display: none;">
+						<span class="field">
+							<span class="<#ERROR name="ERRORPhotoJournalIssue">"><b>Issue Number or Designation</b></span>
+						</span>
+						<input id="PhotoJournalIssue" name="PhotoJournalIssue" type="text" size="40" class="f-name"  value="<#PARAM name="PhotoJournalIssue">"><br />
+				</label>
+
+					<label for="PhotoJournalMonth" style="display: none;">
+						<span class="field">
+							<span class="<#ERROR name="ERRORPhotoJournalMonth">"><b>Month</b></span>
+						</span>
+						<input id="PhotoJournalMonth" name="PhotoJournalMonth" type="text" size="40" class="f-name"  value="<#PARAM name="PhotoJournalMonth">"><br />
+				</label>
+					
+					<label for="PhotoJournalYear" style="display: none;">
+						<span class="field">
+							<span class="req">*</span>
+							<span class="<#ERROR name="ERRORPhotoJournalYear">"><b>Year</b></span>
+						</span>
+						<input id="PhotoJournalYear" name="PhotoJournalYear" type="text" size="40" class="f-name"  value="<#PARAM name="PhotoJournalYear">"><br />
+				</label>
+				
+					
+					
 					
                 	<label for="ISSN">
-						<span class="field">
-                			<span class="<#ERROR name="ERRORISSN">"><b>ISBN (International Standard Book Number)</b></span><br />
-                			<span class="note">If given will speed request processing</span>
+					 	<span class="field">
+                			<span class="<#ERROR name="ERRORISSN">"><b>ISSN/ISBN (International Standard Serial/Book Number)</b></span><br />
+                		<span class="note">If given will speed request processing</span>
 						</span>
                 		<input id="ISSN" name="ISSN" type="text" size="20" class="f-name"  value="<#PARAM name="ISSN">"><br />
                	</label>
 					
-                	<label for="CallNumber">			
+                	<label for="CallNumber">					
 						<span class="field">
-                			<span class="<#ERROR name="ERRORCallNumber">"><b>Call Number</b></span>
+							<span class="req">*</span>
+							<span class="<#ERROR name="ERRORCallNumber">"><b>Call Number</b></span>
 						</span>
                 		<input id="CallNumber" name="CallNumber" type="text" size="20" class="f-name"  value="<#PARAM name="CallNumber">"><br />
                	</label>
@@ -93,16 +150,17 @@
 					
                 	<label for="NotWantedAfter">
 						<span class="field">
-                			<span class="req">*</span>
-							<span class="<#ERROR name="ERRORNotWantedAfter">"><b>Not Wanted After Date</b></span><br />
+                			<span class="req">*</span><span class="<#ERROR name="ERRORNotWantedAfter">"><b>Not Wanted After Date</b></span><br />
 							<span class="note">(MM/DD/YYYY)</span>
 						</span>
                 		<input id="NotWantedAfter" name="NotWantedAfter" type="text" size="40" class="f-name"  value="<#PARAM name="NotWantedAfter">"><br />
                	</label>
 					
                 	<label for="AcceptNonEnglish">
+					
 						<span class="field">
-                			<span class="<#ERROR name="ERRORAcceptNonEnglish">"><b>Will you accept the item in a language other than English?</b></span><br />
+																		<span class="req" id="AcceptNonEnglishReq">*</span>
+                						<span class="<#ERROR name="ERRORAcceptNonEnglish">"><b>Will you accept the item in a language other than English?</b></span><br />
                 			<span class="note">If yes, specify acceptable languages in the notes field.</span>
 						</span>
                 		<select id="AcceptNonEnglish" name="AcceptNonEnglish" size="1" class="f-name" >
@@ -112,45 +170,10 @@
                 		</select>
 						<br />
                	</label>
-										
-						<label for="ItemInfo1" style="display: none;">
-														
-										<input id="ItemInfo1" name="ItemInfo1" type="text" size="40" class="f-name"  value="<#PARAM name="ItemInfo1">"><br />
-										
-						</label>
-	
-						<label for="ItemInfo3" style="display: none;">
-							<span class="field"><b>Campus mailbox</b><br>
-								
-								<span class="note">Faculty may choose to have an item delivered to their campus mailbox.</span>
-							</span>
-							<textarea id="ItemInfo3" type="text" name="ItemInfo3" rows="2"><#PARAM name="ItemInfo3"></textarea>
-							<br>
-						</label>
-						
-						<label for="ItemInfo4" style="display: none;">
-								<span class="field">
-									<b><span id="ItemInfo4Text" class="valid">Pickup library</span></b>
-									<br>
-									<span id="ItemInfo4Note" class="note">You can also choose to pick up your item at a library other than Gorgas.</span>
-								</span>
-			
-								<select id="ItemInfo4" name="ItemInfo4">
-									<option selected><#PARAM name="ItemInfo4"></option>
-									<option>Gorgas</option>
-									<option>Rodgers</option>
-									<option>Bruno</option>
-									<option>McLure</option>
-									<option>Hoole</option>
-								</select>
-								
-								
-								<br>
-						</label>
-	
+					
                 	<label for="AcceptAlternateEdition">
 						<span class="field">
-                			<span class="<#ERROR name="ERRORAcceptAlternateEdition">"><b>Will you accept an alternate edition of this item?</b></span>
+                			<span class="req">*</span>			<span class="<#ERROR name="ERRORAcceptAlternateEdition">"><b>Will you accept an alternate edition of this item?</b></span>
 						</span>
                 		<select id="AcceptAlternateEdition" name="AcceptAlternateEdition" size="1" class="f-name" >
                     		<option selected><#PARAM name="AcceptAlternateEdition"></option>
@@ -159,36 +182,616 @@
                 		</select>
                 		<br />
                	</label>
+								
+									
+                	<label for="facOrGrad" style="display: none;">
+										<span class="field">
+											<span class="req">*</span>
+											<b><span id="facOrGradText" class="valid">Are you a faculty member or graduate student?</span></b>
+											<br>
+											<!--<span id="facOrGradNote" class="note">You must be a faculty member or graduate student to use this service.</span>-->
+										</span>
 					
-                
+										<select id="facOrGrad" name="facOrGrad">
+											<option></option>
+											<option>Faculty</option>
+											<option>Graduate student</option>
+											<option>Neither</option>
+										</select>
+										<br>
+									</label>
+									
+									<label for="itemInfo5">
+											<span class="field">
+												<b><span id="itemInfo5Text" class="valid">Is this an Annex item?</span></b>
+												<br>
+												<!--<span id="facOrGradNote" class="note">You must be a faculty member or graduate student to use this service.</span>-->
+											</span>
 					
+											<select id="itemInfo5" name="itemInfo5">
+												<option selected><#PARAM name="ItemInfo5"></option>
+												<option>Yes</option>
+												<option>No</option>
+											</select>
+											<br>
+									</label>
+									
+									<label for="ItemInfo1" style="display: none;">
+														
+										<input id="ItemInfo1" name="ItemInfo1" type="text" size="40" class="f-name"  value="<#PARAM name="ItemInfo1">"><br />
+										
+						</label>
+									
+									<label for="ItemInfo3" >
+									  
+										<span class="field"><b>Campus mailbox</b><br>
+											
+											<span class="note">Faculty may choose to have an item delivered to their campus mailbox.  Expected delivery time is 2-3 days.</span>
+										</span>
+										<textarea id="ItemInfo3" type="text" name="ItemInfo3" rows="2"><#PARAM name="ItemInfo3"></textarea>
+									<br>
+									</label>
+									
+									<label for="ItemInfo4" >									  
+										<span class="field">
+											<span class="req" id="ItemInfo4Req">*</span>
+											<b><span id="ItemInfo4Text" class="valid">Pickup library</span></b>
+											<br>
+												<span class="note" id="ItemInfo4Note" style="display: none;">Periodical/Serial will be placed on hold at the library where it is shelved.</span>
+										</span>
+					
+										<select id="ItemInfo4" name="ItemInfo4">
+											<option selected><#PARAM name="ItemInfo4"></option>
+											<option>Gorgas</option>
+											<option>Rodgers</option>
+											<option>Bruno</option>
+											<option>McLure</option>
+										</select>
+										
+									
+										<br>
+										
+
+									</label>
+									<!--
+										<label for="Address">
+											<span class="field">
+														<span class="<#ERROR name="ERRORAddress">"><b>Web Services Test -- ignore!</b></span>
+											</span>
+											<input id="Address" name="Address" type="text" size="40" class="f-name"  value="<#PARAM name="Address">"><br />
+										</label>
+										<label for="Site">
+												<span class="field">
+														<b><span class="<#ERROR name="ERRORSite">">Site (temporary Web Serv test)</span></b>
+														<br>
+												</span>
+										   <select id="Site" name="Site" size="1" class="f-name" >
+													<#OPTION name="custom" groupname="Site" defaultValue="Gorgas" />
+											</select>
+										</label>-->
+									
+									
+									
+									
                 	<label for="Notes">
 						<span class="field">
                 			<span class="<#ERROR name="ERRORNotes">"><b>Notes</b></span><br />
-                			<span class="note">Put any information here that may help us find the item, as well as any other pertinent information.</span>
+                			<span class="note" >Put any information here that may help us find the item, as well as any other pertinent information.</span>
 						</span>
-                		<textarea id="Notes" name="Notes" rows="2" cols="40" class="f-name" ><#PARAM name="Notes"></textarea>
-                		<br />
+                		<textarea id="Notes" name="Notes" rows="2" cols="40" class="f-name" ><#PARAM name="Notes"></textarea><br />
                	</label>
+								
+								
+									</label>
+									
 					
                 	<#INCLUDE filename="include_request_cited.html">                
                     <#INCLUDE filename="include_request_buttons.html">
                 </fieldset>
 						    <script>
 								
-											$(document).ready(function(){
-												 console.log("JQUERY LOADS!");
-												 var docDeliveryStatus = $('input#ItemInfo1').attr('value');
-												 if ((docDeliveryStatus == 'DocDelivery') || (docDeliveryStatus == 'DocDeliveryPublic')){												 
-														$('#requestCited').css('display', 'none');
-														$('label[for="ItemInfo3"]').css('display', 'block');
-														$('label[for="ItemInfo4"]').css('display', 'block');
-														$('#ItemInfo3').css('display', 'block');
-														$('#pageHeader').html("Edit Document Delivery Request -- physical item");
-														$('#pageHeader').after('<p id="pageIntroduction">Edit your document delivery request here.  You must be a faculty member or graduate student to use this service.</p>');
-												 }
-												 $('#content').css('display', 'block');
+										
+			$(document).ready(function(){
+			
+					
+							//Pickup library is ItemInfo4
+							function pickupLibraryFadeIn(note){
+									
+									$('#ItemInfo4').fadeIn(500);
+									$('#ItemInfo4Note').fadeOut(500);
+								
+									var fieldIndex = requiredFields.indexOf('ItemInfo4');
+									if ((fieldIndex < 0) && ($('#ItemInfo3').val() == '')){
+										requiredFields.push('ItemInfo4');
+										//$('#ItemInfo4Req').show();
+									}
+							}
+							
+							//Pickup library is ItemInfo4
+							function pickupLibraryFadeOut(note){
+									
+									$('#ItemInfo4').fadeOut(500);
+									$('#ItemInfo4Req').hide();
+									
+									if (note == true){
+										$('#ItemInfo4Note').fadeIn(500);
+									}
+									else if (note == false){
+										$('#ItemInfo4Note').fadeOut(500);
+									}
+									
+									$('#ItemInfo4Text').removeClass('validationError').addClass('valid');
+									var fieldIndex = requiredFields.indexOf('ItemInfo4');
+									if (fieldIndex >= 0){
+										requiredFields.splice(fieldIndex, 1);
+									}
+							}
+					 		
+ 
+				requiredFields = ['LoanTitle', 'LoanAuthor', 'NotWantedAfter', 'AcceptNonEnglish']; 
+				
+				$('#AcceptNonEnglishReq').hide();
+				
+				 docDelivery = false;
+				 docDeliveryStatus = $('input#ItemInfo1').attr('value');
+				 
+					if ((docDeliveryStatus == 'DocDelivery') || (docDeliveryStatus == 'DocDeliveryPublic')){			
+						requiredFields = ['LoanTitle', 'LoanAuthor', 'NotWantedAfter', 'facOrGrad', 'AcceptAlternateEdition', 'CallNumber', 'ItemInfo4']; 
+						
+						if ($('#ItemInfo3').val() != ''){
+							//Remove ItemInfo4 as req
+							var fieldIndex = requiredFields.indexOf('ItemInfo4');
+							if (fieldIndex >= 0){
+								requiredFields.splice(fieldIndex, 1);
+							}
+							console.log("REQUIRED FIELDS!");
+							console.log(requiredFields);
+						 $('#ItemInfo4Req').hide();
+							console.log("HIDE ITEM INFO 4 REQ");
+						}
+						docDelivery = true;
+					}	
+			
+					 if (docDelivery == true){
+					 console.log("DOC DELIVERY IS TRUE");
+		 		
+							$('#requestCited').css('display', 'none');
+
+							//Hide buttons that no longer work
+							//$('input[name="ResetButton"]').css('display', 'none');
+							$('input[value^="Cancel"]').css('display', 'none');
+							
+							
+							$('#pageHeader').html("Edit Document Delivery - Loan (UA Libraries Collection)");
+	
+							$('label[for="facOrGrad"]').css('display', 'block');
+							$('label[for="itemInfo2"]').css('display', 'block');
+							$('label[for="ItemInfo3"]').css('display', 'block');
+							$('label[for="ItemInfo4"]').css('display', 'block');
+							$('label[for="itemInfo5"]').css('display', 'block');
+						  $('label[for="ESPNumber"]').css('display', 'none');
+						
+			
+							$('#facOrGrad').change(function(){
+							
+							  var annexValue = $('#itemInfo5').val();
+								var serialLoanValue = $('#itemInfo2').val()
+								
+								if ($(this).val() == 'Faculty'){
+
+										console.log("annex value is " + annexValue); 
+										if ((serialLoanValue != 'Yes') || (annexValue == 'Yes')){
+											$('label[for="ItemInfo3"]').fadeIn(500);
+											$('label[for="ItemInfo4"]').fadeIn(500);
+										}
+								}		
+								else if ($(this).val() == 'Graduate student'){
+										console.log("HITS GRAD STUDENT");
+										$('label[for="ItemInfo3"]').fadeOut(500);
+										if ((serialLoanValue != 'Yes') || (annexValue == 'Yes')){
+											$('label[for="ItemInfo4"]').fadeIn(500);
+										}
+								}
+								else if ($(this).val() == 'Neither'){
+										$('label[for="ItemInfo3"]').fadeOut(500);	
+
+										if (annexValue == 'Yes'){										
+											$('label[for="ItemInfo4"]').fadeIn(500);
+										}									
+								}
+								else {
+										$('label[for="ItemInfo3"]').fadeOut(500);
+										if (annexValue == 'Yes'){										
+											$('label[for="ItemInfo4"]').fadeIn(500);
+										}		
+								}
+								
+								if (annexValue == 'Yes'){
+									//$('#ItemInfo4Note').text("For Annex requests, any user can specify a pickup library.");
+								}
+								else{
+									 //$('#ItemInfo4Note').text("For document delivery, faculty or graduate students may choose to pick up their item at a library other than Gorgas.");
+								}
+								
+								console.log("REQUIRED FIELDS");
+								console.log(requiredFields);
+							});
+							
+							//Campus mailbox
+							$('#ItemInfo3').change(function(){
+									console.log("CHANGE FIRES!");
+								 if ($('#ItemInfo3').val() != ''){
+										
+									/*if ($('#pickupNote').length > 0){
+											$('#pickupNote').css('display', 'block');
+										}
+										else {							
+											$('#ItemInfo4Note').before('<span id="pickupNote" class="note" style="display: block"><strong>Since you specified delivery to your campus mailbox, pickup library cannot also be selected. </strong></span>');								
+										}/*
+										$('#ItemInfo4').val(function(index, value){												
+													return '';
 											});
+										$('#ItemInfo4').prop("disabled", true);*/
+										pickupLibraryFadeOut(false);
+									}
+									
+									
+								 else{
+										pickupLibraryFadeIn();
+								 }
+								 
+							 	console.log("REQUIRED FIELDS");
+								console.log(requiredFields);
+							});
+							
+							//Annex request
+							$('#itemInfo5').change(function(){
+							  var facGradValue = $('#facOrGrad').val(); 
+								var serialLoanValue = $('#itemInfo2').val()
+								
+								console.log(serialLoanValue);
+								
+								if ($(this).val() == 'Yes'){
+									//$('#ItemInfo4Note').text("For Annex requests, any user can specify a pickup library.");
+		
+									//Show pickup library unless user is faculty and they filled in campus mailbox
+									if ($('#facOrGrad').val() == 'Faculty'){
+										$('label[for="ItemInfo3"]').fadeIn(500);
+										if ($('#ItemInfo3').val() == ''){
+											pickupLibraryFadeIn();
+										}
+									}
+									else{
+										pickupLibraryFadeIn();
+									}
+
+									
+									//if (serialLoanValue == 'Yes'){
+										
+										//$('#pickupNote').css('display', 'none');
+										
+									//}
+									
+								}
+								else if (($(this).val() == 'No') || ($(this).val() == '')){
+								  //$('#ItemInfo4Note').text("For document delivery, faculty or graduate students may choose to pick up their item at a library other than Gorgas.");
+								
+									console.log(facGradValue);
+									/*
+									if ((facGradValue != 'Faculty') && (facGradValue != 'Graduate student')){
+										$('label[for="ItemInfo4"').fadeOut(500);
+									}
+									else{
+										$('label[for="ItemInfo4"').fadeOut(500);
+									}*/
+									
+									if (serialLoanValue == 'Yes'){
+										pickupLibraryFadeOut(true);
+										$('label[for="ItemInfo3"]').fadeOut(500);
+									}
+									else {
+										//Show pickup library unless user is faculty and they filled in campus mailbox
+										if ($('#facOrGrad').val() == 'Faculty'){
+											$('label[for="ItemInfo3"]').fadeIn(500);
+											if ($('#ItemInfo3').val() == ''){
+												pickupLibraryFadeIn();
+											}
+										}
+										else{
+											pickupLibraryFadeIn();
+										}									
+									}						
+
+									//if (serialLoanValue == 'Yes'){
+										//$('#ItemInfo4Note').text("Periodical/Serial will be placed on hold at the library where it is shelved");	
+										//$('#pickupNote').css('display', 'none');
+									//}
+								}
+									
+								console.log("REQUIRED FIELDS");
+								console.log(requiredFields);
+							});
+							
+							//Serial loan request
+							$('#itemInfo2').change(function(){
+							
+								var annexValue = $('#itemInfo5').val();
+								
+							  if ($(this).val() == 'Yes'){
+												  
+								 	//$('label[for="LoanTitle"]').fadeOut(500);
+									$('label[for="LoanAuthor"]').fadeOut(500);
+									$('label[for="LoanPublisher"]').fadeOut(500);
+									$('label[for="LoanPlace"]').fadeOut(500);
+									$('label[for="LoanDate"]').fadeOut(500);
+									$('label[for="LoanEdition"]').fadeOut(500);
+									$('label[for="LoanPublisher"]').fadeOut(500);
+								
+									$('label[for="AcceptAlternateEdition"]').fadeOut(500);
+									
+									//$('label[for="PhotoJournalTitle"]').fadeIn(500);
+									$('label[for="PhotoJournalVolume"]').fadeIn(500);
+									$('label[for="PhotoJournalIssue"]').fadeIn(500);
+									$('label[for="PhotoJournalMonth"]').fadeIn(500);
+									$('label[for="PhotoJournalYear"]').fadeIn(500);
+								
+								
+									if (annexValue != 'Yes'){
+										console.log("TEST YES");
+										pickupLibraryFadeOut(true);
+										$('label[for="ItemInfo3"]').fadeOut(500);
+									}
+									else{
+									//else just for debugging
+									console.log("TEST NO");
+									}
+									
+	
+									
+									var fieldsToBeRemoved = ['LoanAuthor', 'ItemInfo4', 'AcceptAlternateEdition'];
+									for (j = 0; j < fieldsToBeRemoved.length; j++){
+								
+									  var currentField = fieldsToBeRemoved[j];
+										var fieldIndex = requiredFields.indexOf(currentField);
+										if (fieldIndex >= 0){
+											requiredFields.splice(fieldIndex, 1);
+										}
+									}															
+									
+									var fieldsToBeAdded = ['PhotoJournalYear'];
+									for (j = 0; j < fieldsToBeAdded.length; j++){
+										var currentField = fieldsToBeAdded[j];
+										var fieldIndex = requiredFields.indexOf(currentField);
+										if (fieldIndex == -1){
+											requiredFields.push(currentField);
+										}
+									}
+																	
+									
+									console.log("REQUIRED FIELDS");
+									console.log(requiredFields);
+									
+									
+								}
+								else if ($(this).val() == 'No'){
+									//$('label[for="LoanTitle"]').fadeIn(500);
+									$('label[for="LoanPublisher"]').fadeIn(500);
+									$('label[for="LoanPlace"]').fadeIn(500);
+									$('label[for="LoanDate"]').fadeIn(500);
+									$('label[for="LoanEdition"]').fadeIn(500);
+									$('label[for="LoanAuthor"]').fadeIn(500);
+									$('label[for="LoanPublisher"]').fadeIn(500);
+									$('label[for="AcceptAlternateEdition"]').fadeIn(500);
+								
+									//$('label[for="PhotoJournalTitle"]').fadeOut(500);
+									$('label[for="PhotoJournalVolume"]').fadeOut(500);
+									$('label[for="PhotoJournalIssue"]').fadeOut(500);
+									$('label[for="PhotoJournalMonth"]').fadeOut(500);
+									$('label[for="PhotoJournalYear"]').fadeOut(500);
+									
+									
+
+									//Show pickup library unless user is faculty and they filled in campus mailbox
+									if ($('#facOrGrad').val() == 'Faculty'){
+										$('label[for="ItemInfo3"]').fadeIn(500);
+										if ($('#ItemInfo3').val() == ''){
+											pickupLibraryFadeIn();
+										}
+									}
+									else{
+										pickupLibraryFadeIn();
+									}
+
+								
+									
+									//$('#ItemInfo4Note').fadeOut(500)
+									
+									var fieldsToBeRemoved = ['PhotoJournalYear'];
+									for (j = 0; j < fieldsToBeRemoved.length; j++){
+								
+									  var currentField = fieldsToBeRemoved[j];
+										var fieldIndex = requiredFields.indexOf(currentField);
+										if (fieldIndex >= 0){
+											requiredFields.splice(fieldIndex, 1);
+										}
+									}
+									
+									var fieldsToBeAdded = ['LoanAuthor', 'AcceptAlternateEdition'];								
+									for (j = 0; j < fieldsToBeAdded.length; j++){
+										var currentField = fieldsToBeAdded[j];
+										var fieldIndex = requiredFields.indexOf(currentField);
+										if (fieldIndex == -1){
+												requiredFields.push(currentField);
+										}
+									}
+									
+									
+									console.log("REQUIRED FIELDS");
+									console.log(requiredFields);
+										
+								}
+																						
+							
+			
+							});
+	
+	
+	
+							//Ensure edit document delivery - loan updates with correct fields 
+							$('#itemInfo2').change();
+							$('#ItemInfo3').change();
+							$('#itemInfo5').change();
+					
+					 }
+
+					 else {
+							$('label[for="CallNumber"] span.req').css('display', 'none');
+					 }
+					 
+					$('#EditLoanRequest').submit(function(event){
+							
+							if (docDelivery == true){
+								$('#Notes').val(function(index, value){
+								
+								 //Cram fac/grad value into Notes field when form is submitted
+									var notesValue = $('#Notes').val();
+									var facOrGradValue = $('#facOrGrad').val();
+
+									var facOrGradIndex = notesValue.indexOf('Faculty request / ')
+									
+									if (facOrGradIndex != -1){		
+										
+										notesValue = notesValue.slice(0, facOrGradIndex);
+					
+									}
+									else {
+										facOrGradIndex = notesValue.indexOf('Graduate student request / ')
+										if (facOrGradIndex != -1){		
+											 
+											 notesValue = notesValue.slice(0, facOrGradIndex);
+										}
+									}
+
+									if (facOrGradValue == 'Faculty'){
+											notesValue = 'Faculty request / ' + notesValue; 
+									}
+									else if (facOrGradValue == 'Graduate student'){
+											notesValue = 'Graduate student request / ' + notesValue; 
+									}
+										
+									return notesValue;
+							});
+						}
+						
+						 var missingFields = []; 
+						 
+						 for (i = 0; i < requiredFields.length; i++){
+								currentField = requiredFields[i];
+								currentContent = $('#' + currentField).val();
+								
+								//console.log("CURRENT FIELD IS");
+								//console.log(currentField);
+								
+								//console.log("CURRENT CONTENT IS");
+								//console.log(currentContent);
+								
+								if (currentField == 'facOrGrad'){
+									if ((currentContent == '') || (currentContent == 'No')){
+										missingFields.push(currentField);
+										$('label[for="' + currentField + '"] span.valid').addClass('validationError').removeClass('valid');
+									}
+								}
+								else if (currentContent == ''){											
+									console.log("FORM UNFILLED!");
+									missingFields.push(currentField);
+									$('label[for="' + currentField + '"] span.valid').addClass('validationError').removeClass('valid');
+								}		
+								else {
+									$('label[for="' + currentField + '"] span.validationError').addClass('valid').removeClass('validationError');
+								}
+						 }
+						 //testCounter = 0;
+						 
+						 //Empty fields that are hidden
+						 $('#LoanRequestForm > fieldset > label').each(function(index){
+							var displayAttr = $(this).attr('style');
+							
+							if (displayAttr != undefined){
+								
+								if (displayAttr.indexOf('display: none') != -1 ){
+									//testCounter++;
+									console.log("DISPLAY ATTRIBUTE PRESENT");
+									$(this).find('input').val(function(index, value){
+										console.log("SETTING INPUT");
+										return '';
+									});
+									$(this).find('select').val(function(index, value){
+										console.log("SETTING SELECT");
+										return '';
+									});
+									$(this).find('textarea').val(function(index, value){
+										console.log("SETTING TEXTAREA");
+										return '';
+									});
+									
+								}
+							}
+						});
+						
+						//console.log("TEST COUNTER IS ");
+						//console.log(testCounter);
+						
+
+						if (missingFields.length > 0){
+							
+							 topErrorMessage = '<p style="color: red;">Required fields are missing.</p>';
+							 
+							 console.log("MISSING FIELDS ARRAY");
+							 console.log(missingFields);
+							
+							 topErrorMessage += "</div>";
+							 
+							 console.log("TOP ERROR MESSAGE IS");
+							 console.log(topErrorMessage);
+							 if ($('#TopErrorMessage').length == 0){
+								 topErrorMessage = '<div id="TopErrorMessage">' + topErrorMessage + '</div>';
+								 $('#pageHeader').after(topErrorMessage);
+							 }
+							 else {
+								$('#TopErrorMessage').html('');
+								$('#TopErrorMessage').html(topErrorMessage);
+							 }
+							 
+							 console.log("RETURNING FALSE");
+							 return false;						 
+						 }	
+
+						
+				});
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					
+					 $('#content').css('display', 'block');
+
+});										
+										
 							
 								</script>
 								<script>

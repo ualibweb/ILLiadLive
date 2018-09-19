@@ -19,7 +19,6 @@ a.docDeliveryLink {
 			<#INCLUDE filename="include_menu.html">
     	<div id="content">
 		  <h1>Select document delivery type</h1>
-			
 				<!--<div>
 					<p><a id="intracampusDelivery" class="docDeliveryLink" href="https://ua.illiad.oclc.org/illiad/illiad.dll?Action=10&Form=21&docdelivery=true&intracampus=true">Intracampus Delivery</a></p>
 					<p>Click "Intracampus Delivery" to request an interlibrary loan item be delivered to your campus mailbox.  Only faculty may use this service.</p>
@@ -28,7 +27,7 @@ a.docDeliveryLink {
 				<div>
 					
 					<p><a id="docDeliveryCopy" class="docDeliveryLink" href="<#ACTION action="10" form="22">&docdelivery=true&catalog=true">Doc Delivery - Copy</a></p>
-					<p>Click "Doc Delivery - Copy" to request a photocopy of a book chapter or journal article we have in print (this includes Annex requests). </p>
+					<p>Click "Doc Delivery - Copy" to request a photocopy of a book chapter or journal article we have in print (this includes Annex requests).  </p>
 				</div>
 				<br><br>
 				<div>
@@ -64,7 +63,15 @@ a.docDeliveryLink {
 		
 	var loanLink = document.querySelector('#docDeliveryLoan').getAttribute('href');
 	if (loanLink){
-		var newLink = loanLink + querystring;
+		newQuerystring = querystring.replace('&photojournaltitle', '&loantitle');
+		newQuerystring = newQuerystring.replace('&amp;photojournaltitle', '&amp;loantitle')
+
+		if (document.location.search.indexOf('photojournaltitle') != -1){
+			newQuerystring = newQuerystring + '&serialloanrequest=true';
+		}
+		
+		var newLink = loanLink + newQuerystring;
+		
 		document.querySelector('#docDeliveryLoan').setAttribute('href', newLink);
 	}
 	
