@@ -388,7 +388,7 @@
 								if ($(this).val() == 'Faculty'){
 
 										console.log("annex value is " + annexValue); 
-										if ((serialLoanValue != 'Yes') || (annexValue == 'Yes')){
+										if (serialLoanValue != 'Yes'){
 											$('label[for="ItemInfo3"]').fadeIn(500);
 											pickupLibraryFadeIn();
 										}
@@ -401,7 +401,7 @@
 											return '';
 										});
 										
-										if ((serialLoanValue != 'Yes') || (annexValue == 'Yes')){
+										if (serialLoanValue != 'Yes'){
 										  console.log("FADE IN");
 											pickupLibraryFadeIn();
 										}
@@ -413,7 +413,7 @@
 											return '';
 										});										
 
-										if ((serialLoanValue != 'Yes') || (annexValue == 'Yes')){									
+										if (serialLoanValue != 'Yes'){									
 											pickupLibraryFadeIn();
 										}									
 								}
@@ -479,7 +479,6 @@
 		
 									//Show pickup library unless user is faculty and they filled in campus mailbox
 									if ($('#facOrGrad').val() == 'Faculty'){
-										$('label[for="ItemInfo3"]').fadeIn(500);
 										if ($('#ItemInfo3').val() == ''){
 											pickupLibraryFadeIn();
 										}
@@ -566,16 +565,16 @@
 									$('label[for="PhotoJournalMonth"]').fadeIn(500);
 									$('label[for="PhotoJournalYear"]').fadeIn(500);
 								
+								  //Campus mailbox should always be hidden for serial loan requests
+									$('label[for="ItemInfo3"]').fadeOut(500);
+										
+									$('#ItemInfo3').val(function(index,value){
+										return '';
+									});
 								
 									if (annexValue != 'Yes'){
 										console.log("TEST YES");
 										pickupLibraryFadeOut(true);
-										$('label[for="ItemInfo3"]').fadeOut(500);
-										
-										$('#ItemInfo3').val(function(index,value){
-											return '';
-										});
-										
 									}
 									else{
 									//else just for debugging
