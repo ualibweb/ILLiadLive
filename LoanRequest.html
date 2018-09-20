@@ -396,7 +396,7 @@ $(document).ready(function(){
 								if ($(this).val() == 'Faculty'){
 
 										console.log("annex value is " + annexValue); 
-										if ((serialLoanValue != 'Yes') || (annexValue == 'Yes')){
+										if (serialLoanValue != 'Yes'){
 											$('label[for="ItemInfo3"]').fadeIn(500);
 											pickupLibraryFadeIn();
 										}
@@ -409,7 +409,7 @@ $(document).ready(function(){
 											return '';
 										});
 										
-										if ((serialLoanValue != 'Yes') || (annexValue == 'Yes')){
+										if (serialLoanValue != 'Yes'){
 										  console.log("FADE IN");
 											pickupLibraryFadeIn();
 										}
@@ -421,7 +421,7 @@ $(document).ready(function(){
 											return '';
 										});										
 
-										if ((serialLoanValue != 'Yes') || (annexValue == 'Yes')){									
+										if (serialLoanValue != 'Yes'){									
 											pickupLibraryFadeIn();
 										}									
 								}
@@ -432,7 +432,7 @@ $(document).ready(function(){
 											return '';
 										});
 										
-										if ((serialLoanValue != 'Yes') || (annexValue == 'Yes')){									
+										if (serialLoanValue != 'Yes'){									
 											pickupLibraryFadeIn();
 										}		
 								}
@@ -487,7 +487,7 @@ $(document).ready(function(){
 		
 									//Show pickup library unless user is faculty and they filled in campus mailbox
 									if ($('#facOrGrad').val() == 'Faculty'){
-										$('label[for="ItemInfo3"]').fadeIn(500);
+
 										if ($('#ItemInfo3').val() == ''){
 											pickupLibraryFadeIn();
 										}
@@ -574,20 +574,21 @@ $(document).ready(function(){
 									$('label[for="PhotoJournalMonth"]').fadeIn(500);
 									$('label[for="PhotoJournalYear"]').fadeIn(500);
 								
-								
-									if (annexValue != 'Yes'){
-										console.log("TEST YES");
-										pickupLibraryFadeOut(true);
-										$('label[for="ItemInfo3"]').fadeOut(500);
-										
-										$('#ItemInfo3').val(function(index,value){
+								  //Campus mailbox should always be hidden for serial loan requests
+									$('label[for="ItemInfo3"]').fadeOut(500);
+									
+									$('#ItemInfo3').val(function(index,value){
 											return '';
 										});
-										
+								
+								  //Pickup library should be hidden for non-Annex requests
+									if (annexValue != 'Yes'){
+										console.log("TEST YES");
+										pickupLibraryFadeOut(true);					
 									}
 									else{
-									//else just for debugging
-									console.log("TEST NO");
+										//else just for debugging
+										console.log("TEST NO");
 									}
 									
 	
