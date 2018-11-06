@@ -182,21 +182,22 @@
                 		</select>
                 		<br />
                	</label>
-								
-									
+			
                 	<label for="facOrGrad" style="display: none;">
 										<span class="field">
 											<span class="req">*</span>
-											<b><span id="facOrGradText" class="valid">Are you a faculty member or graduate student?</span></b>
+											<b><span id="facOrGradText" class="valid">Status</span></b>
 											<br>
 											<!--<span id="facOrGradNote" class="note">You must be a faculty member or graduate student to use this service.</span>-->
 										</span>
 					
 										<select id="facOrGrad" name="facOrGrad">
-											<option></option>
+											<option selected></option>
 											<option>Faculty</option>
 											<option>Graduate student</option>
-											<option>Neither</option>
+											<option>Undergraduate</option>
+											<option>Distance student</option>
+											<option>Other</option>
 										</select>
 										<br>
 									</label>
@@ -231,24 +232,25 @@
 										<textarea id="ItemInfo3" type="text" name="ItemInfo3" rows="2"><#PARAM name="ItemInfo3"></textarea>
 									<br>
 									</label>
-									
-									<label for="ItemInfo4" >									  
+		
+									<label for="ItemInfo4" style="display: none;">									  
 										<span class="field">
 											<span class="req" id="ItemInfo4Req">*</span>
-											<b><span id="ItemInfo4Text" class="valid">Pickup library</span></b>
+											<b><span id="ItemInfo4Text" class="valid">Pickup location</span></b>
 											<br>
 												<span class="note" id="ItemInfo4Note" style="display: none;">Periodical/Serial will be placed on hold at the library where it is shelved.</span>
+												<span style="display: none;" class="note" id="ItemInfo4DistanceEdNote">Delivery will be to your address in ILLiad which <em>does not</em> update automatically.  You can check or change this by clicking on <a href="<#ACTION action="10" form="81">">this User Information link</a> or by selecting User Information from the left-hand menu. </span>											
 										</span>
 					
 										<select id="ItemInfo4" name="ItemInfo4">
-											<option selected><#PARAM name="ItemInfo4"></option>
+											<option selected></option>
 											<option>Gorgas</option>
 											<option>Rodgers</option>
 											<option>Bruno</option>
 											<option>McLure</option>
 										</select>
 										
-									
+										
 										<br>
 										
 
@@ -335,6 +337,21 @@
 										requiredFields.splice(fieldIndex, 1);
 									}
 							}
+							
+								//Remove the delivery to address field when distance education is not chosen
+							function removeDeliveryToAddress(){
+								var pickupLocation = document.getElementById('ItemInfo4');
+								var pickupLocations = pickupLocation.children;
+								
+								//Iterate to get index of delivery to address option (in case it changes)
+								for (i = 0; i < pickupLocations.length; i++){
+									if (pickupLocations[i].value == 'Delivery to address'){
+										pickupLocation.remove(i);
+									}
+								}
+								
+								$('#ItemInfo4DistanceEdNote').hide();
+							}
  
 				requiredFields = ['LoanTitle', 'LoanAuthor', 'NotWantedAfter', 'AcceptNonEnglish']; 
 				
@@ -392,6 +409,8 @@
 											$('label[for="ItemInfo3"]').fadeIn(500);
 											pickupLibraryFadeIn();
 										}
+										
+										removeDeliveryToAddress();																		
 								}		
 								else if ($(this).val() == 'Graduate student'){
 										console.log("HITS GRAD STUDENT");
@@ -405,17 +424,26 @@
 										  console.log("FADE IN");
 											pickupLibraryFadeIn();
 										}
+										
+										removeDeliveryToAddress();
 								}
-								else if ($(this).val() == 'Neither'){
-										$('label[for="ItemInfo3"]').fadeOut(500);
+								else if ($(this).val() == 'Distance student'){
+								
+										
+										var pickup = document.getElementById('ItemInfo4');
+										
+										//Create new "Delivery to address" option
+										var newOption = document.createElement('option');
+										
+										//Set attributes on new option
+										newOption.value = 'Delivery to address';
+										newOption.innerText = 'Delivery to address';
+										newOption.id = "DeliveryToAddress";
+										newOption.selected = true;
+										pickup.add(newOption);
+										
+										$('#ItemInfo4DistanceEdNote').show();
 
-										$('#ItemInfo3').val(function(index,value){
-											return '';
-										});										
-
-										if (serialLoanValue != 'Yes'){									
-											pickupLibraryFadeIn();
-										}									
 								}
 								else {
 										$('label[for="ItemInfo3"]').fadeOut(500);
@@ -424,9 +452,11 @@
 											return '';
 										});
 										
-										if ((serialLoanValue != 'Yes') || (annexValue == 'Yes')){									
+										if (serialLoanValue != 'Yes'){									
 											pickupLibraryFadeIn();
-										}		
+										}
+
+										removeDeliveryToAddress();
 								}
 								
 								if (annexValue == 'Yes'){
@@ -465,6 +495,16 @@
 								 
 							 	console.log("REQUIRED FIELDS");
 								console.log(requiredFields);
+							});
+							
+							//Pickup library
+							$('#ItemInfo4').change(function(){
+								if ($(this).val() == 'Delivery to address'){
+									$('#ItemInfo4DistanceEdNote').show();
+								}
+								else {
+									$('#ItemInfo4DistanceEdNote').hide();
+								}
 							});
 							
 							//Annex request
