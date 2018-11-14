@@ -350,7 +350,7 @@
 									}
 								}
 								
-								$('#ItemInfo4DistanceEdNote').hide();
+								$('#ItemInfo4DistanceEdNote').fadeOut(500);
 							}
  
 				requiredFields = ['LoanTitle', 'LoanAuthor', 'NotWantedAfter', 'AcceptNonEnglish']; 
@@ -429,6 +429,7 @@
 								}
 								else if ($(this).val() == 'Distance student'){
 								
+									  $('label[for="ItemInfo3"]').fadeOut(500);
 										$('#ItemInfo3').val(function(index,value){
 											return '';
 										});
@@ -445,7 +446,7 @@
 										newOption.selected = true;
 										pickup.add(newOption);
 										
-										$('#ItemInfo4DistanceEdNote').show();
+										$('#ItemInfo4DistanceEdNote').fadeIn(500);
 
 								}
 								else {
@@ -503,10 +504,10 @@
 							//Pickup library
 							$('#ItemInfo4').change(function(){
 								if ($(this).val() == 'Delivery to address'){
-									$('#ItemInfo4DistanceEdNote').show();
+									$('#ItemInfo4DistanceEdNote').fadeIn(500);
 								}
 								else {
-									$('#ItemInfo4DistanceEdNote').hide();
+									$('#ItemInfo4DistanceEdNote').fadeOut(500);
 								}
 							});
 							

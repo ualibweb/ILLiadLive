@@ -365,7 +365,7 @@ $(document).ready(function(){
 									}
 							}
 							
-							//Remove the delivery to address field when distance education is not chosen
+							//Remove the delivery to address field and address note when distance education is not chosen
 							function removeDeliveryToAddress(){
 								var pickupLocation = document.getElementById('ItemInfo4');
 								var pickupLocations = pickupLocation.children;
@@ -377,7 +377,7 @@ $(document).ready(function(){
 									}
 								}
 								
-								$('#ItemInfo4DistanceEdNote').hide();
+								$('#ItemInfo4DistanceEdNote').fadeOut(500);
 							}
 					 		
 							$('#requestCited').css('display', 'none');
@@ -438,6 +438,7 @@ $(document).ready(function(){
 								}
 								else if ($(this).val() == 'Distance student'){
 								
+									  $('label[for="ItemInfo3"]').fadeOut(500);
 										$('#ItemInfo3').val(function(index,value){
 											return '';
 										});
@@ -454,7 +455,7 @@ $(document).ready(function(){
 										newOption.selected = true;
 										pickup.add(newOption);
 										
-										$('#ItemInfo4DistanceEdNote').show();
+										$('#ItemInfo4DistanceEdNote').fadeIn(500);
 
 								}
 								else {
@@ -512,10 +513,10 @@ $(document).ready(function(){
 							//Pickup library
 							$('#ItemInfo4').change(function(){
 								if ($(this).val() == 'Delivery to address'){
-									$('#ItemInfo4DistanceEdNote').show();
+									$('#ItemInfo4DistanceEdNote').fadeIn(500);
 								}
 								else {
-									$('#ItemInfo4DistanceEdNote').hide();
+									$('#ItemInfo4DistanceEdNote').fadeOut(500);
 								}
 							});
 							
