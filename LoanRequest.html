@@ -236,7 +236,8 @@
 											<b><span id="ItemInfo4Text" class="valid">Pickup location</span></b>
 											<br>
 												<span class="note" id="ItemInfo4Note" style="display: none;">Periodical/Serial will be placed on hold at the library where it is shelved.</span>
-												<span style="display: none;" class="note" id="ItemInfo4DistanceEdNote">Delivery will be to your address in ILLiad which <em>does not</em> update automatically.  You can check or change this by clicking on <a href="<#ACTION action="10" form="81">">this User Information link</a> or by selecting User Information from the left-hand menu. </span>											
+												<span style="display: none;" class="note" id="ItemInfo4DistanceEdNote">Delivery will be to your address in ILLiad which <em>does not</em> update automatically.  You can check or change this by clicking on <a href="<#ACTION action="10" form="81">">this User Information link</a> or by selecting User Information from the left-hand menu. </span>		
+												<span class="note" id="ItemInfo4DistanceEdSerial" style="display: none;">Serials cannot be delivered to your address. You can request a copy of specific articles or sections using the Document Delivery - Copy form.</span>
 										</span>
 					
 										<select id="ItemInfo4" name="ItemInfo4">
@@ -336,7 +337,57 @@ $(document).ready(function(){
 										requiredFields.push('ItemInfo4');
 										$('#ItemInfo4Req').show();
 									}
+									
+									determinePickupNote();
 							}
+							
+							function determinePickupNote(){
+									var pickupMessage = '';
+									
+									var pickupMessageArray = [];
+									pickupMessageArray.push("Periodical/Serial will be placed on hold at the library where it is shelved.");
+									pickupMessageArray.push('Delivery will be to your address in ILLiad which <em>does not</em> update automatically.  You can check or change this by clicking on <a href="<#ACTION action="10" form="81">">this User Information link</a> or by selecting User Information from the left-hand menu.');
+									pickupMessageArray.push('Serials cannot be delivered to your address. You can request a copy of specific articles or sections using the Document Delivery - Copy form.');
+									
+									console.log("pickup array");
+									console.log(pickupMessageArray);
+
+										
+									if ($("#ItemInfo3").val() != ''){
+										pickupLibraryFadeOut();
+									}
+									else if ($("#itemInfo2").val() == 'Yes'){
+										if ($('#facOrGrad').val() == 'Distance student'){
+										  pickupLibraryFadeOut();
+											pickupMessage = pickupMessageArray[2];
+										}
+										else if ($('#ItemInfo5').val() == 'Yes'){
+											$('#ItemInfo4Note').fadeOut(500);
+											pickupLibraryFadeIn();
+										}
+										else {
+											pickupLibraryFadeOut();
+											pickupMessage = pickupMessageArray[0];
+										}
+									}
+									else if ($('#facOrGrad').val() == 'Distance student'){
+										pickupMessage = pickupMessageArray[1];
+										pickupLibraryFadeOut();
+									}
+									else {
+										console.log("unhandled pickup library case?");
+										pickupLibraryFadeIn();
+										$('#ItemInfo4Note').fadeOut(500);
+									}
+									
+									
+									
+									$('#ItemInfo4Note').fadeIn(500);
+									$('#ItemInfo4Note').html(pickupMessage);
+							}
+							
+							
+					
 							
 							//Pickup library is ItemInfo4
 							function pickupLibraryFadeOut(note){
@@ -349,20 +400,27 @@ $(document).ready(function(){
 									});
 									
 									$('#ItemInfo4Req').hide();
-									
+									/*
 									if (note == true){
 										$('#ItemInfo4Note').fadeIn(500);
 									}
 									else if (note == false){
 										$('#ItemInfo4Note').fadeOut(500);
 									}
-												
 									
+									if ($('#ItemInfo3').val() != ''){
+									
+									}
+									*/
 									$('#ItemInfo4Text').removeClass('validationError').addClass('valid');
 									var fieldIndex = requiredFields.indexOf('ItemInfo4');
 									if (fieldIndex >= 0){
 										requiredFields.splice(fieldIndex, 1);
 									}
+									
+										
+									
+									
 							}
 							
 							//Remove the delivery to address field and address note when distance education is not chosen
@@ -406,6 +464,7 @@ $(document).ready(function(){
 							//$('label[for="ISSN"]').css('display', 'none');
 							//$('label[for="ItemInfo4"]').css('display', 'block');
 						
+						  
 							$('#facOrGrad').change(function(){
 							
 							  var annexValue = $('#itemInfo5').val();
@@ -418,7 +477,15 @@ $(document).ready(function(){
 											$('label[for="ItemInfo3"]').fadeIn(500);
 											pickupLibraryFadeIn();
 										}
-										
+										else if (serialLoanValue == 'Yes'){
+											if (annexValue == 'Yes'){
+												pickupLibraryFadeIn();
+											}
+											else{
+												pickupLibraryFadeOut(true);
+											}
+										}
+										$('#ItemInfo4DistanceEdSerial').fadeOut(500);
 										removeDeliveryToAddress();																		
 								}		
 								else if ($(this).val() == 'Graduate student'){
@@ -433,7 +500,15 @@ $(document).ready(function(){
 										  console.log("FADE IN");
 											pickupLibraryFadeIn();
 										}
-										
+										else if (serialLoanValue == 'Yes'){
+											if (annexValue == 'Yes'){
+												pickupLibraryFadeIn();
+											}
+											else{
+												pickupLibraryFadeOut(true);
+											}
+										}
+										$('#ItemInfo4DistanceEdSerial').fadeOut(500);
 										removeDeliveryToAddress();
 								}
 								else if ($(this).val() == 'Distance student'){
@@ -443,19 +518,26 @@ $(document).ready(function(){
 											return '';
 										});
 										
-										var pickup = document.getElementById('ItemInfo4');
-										
-										//Create new "Delivery to address" option
-										var newOption = document.createElement('option');
-										
-										//Set attributes on new option
-										newOption.value = 'Delivery to address';
-										newOption.innerText = 'Delivery to address';
-										newOption.id = "DeliveryToAddress";
-										newOption.selected = true;
-										pickup.add(newOption);
-										
-										$('#ItemInfo4DistanceEdNote').fadeIn(500);
+										//If Serial Loan request is yes, show note explaining item will not be sent to address
+										if ($('#itemInfo2').val() == 'Yes'){
+											var pickup = document.getElementById('ItemInfo4');										
+											
+											//Create new "Delivery to address" option
+											var newOption = document.createElement('option');
+											
+											//Set attributes on new option
+											newOption.value = 'Delivery to address';
+											newOption.innerText = 'Delivery to address';
+											newOption.id = "DeliveryToAddress";
+											newOption.selected = true;
+											pickup.add(newOption);
+																			
+											
+									  //Display typical note for document delivery
+										}
+										else if ($('#itemInfo2').val() == 'No') {
+	
+										}
 
 								}
 								else {
@@ -467,6 +549,14 @@ $(document).ready(function(){
 										
 										if (serialLoanValue != 'Yes'){									
 											pickupLibraryFadeIn();
+										}
+										else if (serialLoanValue == 'Yes'){
+											if (annexValue == 'Yes'){
+												pickupLibraryFadeIn();
+											}
+											else{
+												pickupLibraryFadeOut(true);
+											}
 										}
 
 										removeDeliveryToAddress();
@@ -481,6 +571,8 @@ $(document).ready(function(){
 								
 								console.log("REQUIRED FIELDS");
 								console.log(requiredFields);
+								
+								determinePickupNote();
 							});
 							
 							//Campus mailbox
@@ -508,16 +600,13 @@ $(document).ready(function(){
 								 
 							 	console.log("REQUIRED FIELDS");
 								console.log(requiredFields);
+								
+								determinePickupNote();
 							});
 							
 							//Pickup library
 							$('#ItemInfo4').change(function(){
-								if ($(this).val() == 'Delivery to address'){
-									$('#ItemInfo4DistanceEdNote').fadeIn(500);
-								}
-								else {
-									$('#ItemInfo4DistanceEdNote').fadeOut(500);
-								}
+								determinePickupNote();
 							});
 							
 							//Annex request
@@ -530,7 +619,7 @@ $(document).ready(function(){
 								if ($(this).val() == 'Yes'){
 									//$('#ItemInfo4Note').text("For Annex requests, any user can specify a pickup library.");
 		
-									//Show pickup library unless user is faculty and they filled in campus mailbox
+									//Show pickup library unless user is faculty and they filled in campus mailbox, or unless the user is a distance education student
 									if ($('#facOrGrad').val() == 'Faculty'){
 
 										if ($('#ItemInfo3').val() == ''){
@@ -540,7 +629,8 @@ $(document).ready(function(){
 											//$('#ItemInfo4Note').fadeOut(500);
 										}
 									}
-									else{
+												
+									else if ($('#facOrGrad').val() != 'Distance student'){
 										pickupLibraryFadeIn();
 									}
 
@@ -594,6 +684,8 @@ $(document).ready(function(){
 									
 								console.log("REQUIRED FIELDS");
 								console.log(requiredFields);
+								
+								determinePickupNote();
 							});
 							
 							//Serial loan request
@@ -626,17 +718,37 @@ $(document).ready(function(){
 											return '';
 										});
 								
-								  //Pickup library should be hidden for non-Annex requests
-									if (annexValue != 'Yes'){
-										console.log("TEST YES");
-										pickupLibraryFadeOut(true);					
+								  //Serial loan requests cannot be made by distance students 
+									if ($('#facOrGrad').val() == 'Distance student'){
+									
 									}
 									else{
-										//else just for debugging
-										console.log("TEST NO");
+										//Pickup library should be hidden for non-Annex requests
+										if (annexValue != 'Yes'){
+											console.log("TEST YES");
+											pickupLibraryFadeOut(true);					
+										}
+										else{
+											//else just for debugging
+											console.log("TEST NO");
+										}
 									}
 									
-	
+									/*
+									if ($('#facOrGrad').val() == 'Distance student'){
+										if ($('#ItemInfo4').val() == 'Delivery to address'){
+											console.log("FOUND!");
+											$('#ItemInfo4Note').fadeIn(500);
+											$('#ItemInfo4DistanceEdNote').fadeOut(500);
+										}
+										else {
+											console.log("val is " + $('#ItemInfo4').val());
+										}
+									}
+									else {
+										console.log("val is " + $('#facOrGrad').val());
+									}
+									*/
 									
 									var fieldsToBeRemoved = ['LoanAuthor', 'ItemInfo4', 'AcceptAlternateEdition'];
 									for (j = 0; j < fieldsToBeRemoved.length; j++){
@@ -721,7 +833,7 @@ $(document).ready(function(){
 										
 								}
 																						
-							
+								determinePickupNote();
 			
 							});
 	
