@@ -341,6 +341,24 @@ $(document).ready(function(){
 									determinePickupNote();
 							}
 							
+							function determineCampusMailbox(){
+							
+								if ($('#facOrGrad').val() == 'Faculty'){
+									if ($('#itemInfo2').val() != 'Yes'){
+										$('label[for="ItemInfo3"]').fadeIn(500);
+									}
+								}
+								else {
+									$('label[for="ItemInfo3"]').fadeOut(500);
+										
+									$('#ItemInfo3').val(function(index,value){
+										return '';
+									});
+								}
+								
+										
+							}
+							
 							function determinePickupNote(){
 									var pickupMessage = '';
 									
@@ -470,97 +488,7 @@ $(document).ready(function(){
 							  var annexValue = $('#itemInfo5').val();
 								var serialLoanValue = $('#itemInfo2').val()
 								
-								if ($(this).val() == 'Faculty'){
-
-										console.log("annex value is " + annexValue); 
-										if (serialLoanValue != 'Yes'){
-											$('label[for="ItemInfo3"]').fadeIn(500);
-											pickupLibraryFadeIn();
-										}
-										else if (serialLoanValue == 'Yes'){
-											if (annexValue == 'Yes'){
-												pickupLibraryFadeIn();
-											}
-											else{
-												pickupLibraryFadeOut(true);
-											}
-										}
-										$('#ItemInfo4DistanceEdSerial').fadeOut(500);
-										removeDeliveryToAddress();																		
-								}		
-								else if ($(this).val() == 'Graduate student'){
-										console.log("HITS GRAD STUDENT");
-										$('label[for="ItemInfo3"]').fadeOut(500);
-										
-										$('#ItemInfo3').val(function(index,value){
-											return '';
-										});
-										
-										if (serialLoanValue != 'Yes'){
-										  console.log("FADE IN");
-											pickupLibraryFadeIn();
-										}
-										else if (serialLoanValue == 'Yes'){
-											if (annexValue == 'Yes'){
-												pickupLibraryFadeIn();
-											}
-											else{
-												pickupLibraryFadeOut(true);
-											}
-										}
-										$('#ItemInfo4DistanceEdSerial').fadeOut(500);
-										removeDeliveryToAddress();
-								}
-								else if ($(this).val() == 'Distance student'){
-								
-									  $('label[for="ItemInfo3"]').fadeOut(500);
-										$('#ItemInfo3').val(function(index,value){
-											return '';
-										});
-										
-										//If Serial Loan request is yes, show note explaining item will not be sent to address
-										if ($('#itemInfo2').val() == 'Yes'){
-											var pickup = document.getElementById('ItemInfo4');										
-											
-											//Create new "Delivery to address" option
-											var newOption = document.createElement('option');
-											
-											//Set attributes on new option
-											newOption.value = 'Delivery to address';
-											newOption.innerText = 'Delivery to address';
-											newOption.id = "DeliveryToAddress";
-											newOption.selected = true;
-											pickup.add(newOption);
-																			
-											
-									  //Display typical note for document delivery
-										}
-										else if ($('#itemInfo2').val() == 'No') {
-	
-										}
-
-								}
-								else {
-										$('label[for="ItemInfo3"]').fadeOut(500);
-										
-										$('#ItemInfo3').val(function(index,value){
-											return '';
-										});
-										
-										if (serialLoanValue != 'Yes'){									
-											pickupLibraryFadeIn();
-										}
-										else if (serialLoanValue == 'Yes'){
-											if (annexValue == 'Yes'){
-												pickupLibraryFadeIn();
-											}
-											else{
-												pickupLibraryFadeOut(true);
-											}
-										}
-
-										removeDeliveryToAddress();
-								}
+								determineCampusMailbox();
 								
 								if (annexValue == 'Yes'){
 									//$('#ItemInfo4Note').text("For Annex requests, any user can specify a pickup library.");
@@ -577,36 +505,14 @@ $(document).ready(function(){
 							
 							//Campus mailbox
 							$('#ItemInfo3').change(function(){
-									console.log("CHANGE FIRES!");
-								 if ($('#ItemInfo3').val() != ''){
-										
-									/*if ($('#pickupNote').length > 0){
-											$('#pickupNote').css('display', 'block');
-										}
-										else {							
-											$('#ItemInfo4Note').before('<span id="pickupNote" class="note" style="display: block"><strong>Since you specified delivery to your campus mailbox, pickup library cannot also be selected. </strong></span>');								
-										}/*
-										$('#ItemInfo4').val(function(index, value){												
-													return '';
-											});
-										$('#ItemInfo4').prop("disabled", true);*/
-										pickupLibraryFadeOut(false);
-									}
-									
-									
-								 else{
-										pickupLibraryFadeIn();
-								 }
-								 
-							 	console.log("REQUIRED FIELDS");
-								console.log(requiredFields);
-								
 								determinePickupNote();
+								
 							});
 							
 							//Pickup library
 							$('#ItemInfo4').change(function(){
 								determinePickupNote();
+								determineCampusMailbox();
 							});
 							
 							//Annex request
@@ -617,75 +523,14 @@ $(document).ready(function(){
 								console.log(serialLoanValue);
 								
 								if ($(this).val() == 'Yes'){
-									//$('#ItemInfo4Note').text("For Annex requests, any user can specify a pickup library.");
-		
-									//Show pickup library unless user is faculty and they filled in campus mailbox, or unless the user is a distance education student
-									if ($('#facOrGrad').val() == 'Faculty'){
-
-										if ($('#ItemInfo3').val() == ''){
-											pickupLibraryFadeIn();
-										}
-										else {
-											//$('#ItemInfo4Note').fadeOut(500);
-										}
-									}
-												
-									else if ($('#facOrGrad').val() != 'Distance student'){
-										pickupLibraryFadeIn();
-									}
-
-									
-									//if (serialLoanValue == 'Yes'){
-										
-										//$('#pickupNote').css('display', 'none');
-										
-									//}
 									
 								}
 								else if (($(this).val() == 'No') || ($(this).val() == '')){
-								  //$('#ItemInfo4Note').text("For document delivery, faculty or graduate students may choose to pick up their item at a library other than Gorgas.");
 								
-									console.log(facGradValue);
-									/*
-									if ((facGradValue != 'Faculty') && (facGradValue != 'Graduate student')){
-										$('label[for="ItemInfo4"').fadeOut(500);
-									}
-									else{
-										$('label[for="ItemInfo4"').fadeOut(500);
-									}*/
-									
-									if (serialLoanValue == 'Yes'){
-										pickupLibraryFadeOut(true);
-										$('label[for="ItemInfo3"]').fadeOut(500);
-										
-										$('#ItemInfo3').val(function(index,value){
-											return '';
-										});
-										
-									}
-									else {
-										//Show pickup library unless user is faculty and they filled in campus mailbox
-										if ($('#facOrGrad').val() == 'Faculty'){
-											$('label[for="ItemInfo3"]').fadeIn(500);
-											if ($('#ItemInfo3').val() == ''){
-												pickupLibraryFadeIn();
-											}
-										}
-										else{
-											pickupLibraryFadeIn();
-										}									
-									}						
-
-									//if (serialLoanValue == 'Yes'){
-										//$('#ItemInfo4Note').text("Periodical/Serial will be placed on hold at the library where it is shelved");	
-										//$('#pickupNote').css('display', 'none');
-									//}
 								}
-									
-								console.log("REQUIRED FIELDS");
-								console.log(requiredFields);
 								
 								determinePickupNote();
+								determineCampusMailbox();
 							});
 							
 							//Serial loan request
@@ -709,47 +554,8 @@ $(document).ready(function(){
 									$('label[for="PhotoJournalVolume"]').fadeIn(500);
 									$('label[for="PhotoJournalIssue"]').fadeIn(500);
 									$('label[for="PhotoJournalMonth"]').fadeIn(500);
-									$('label[for="PhotoJournalYear"]').fadeIn(500);
-								
-								  //Campus mailbox should always be hidden for serial loan requests
-									$('label[for="ItemInfo3"]').fadeOut(500);
-									
-									$('#ItemInfo3').val(function(index,value){
-											return '';
-										});
-								
-								  //Serial loan requests cannot be made by distance students 
-									if ($('#facOrGrad').val() == 'Distance student'){
-									
-									}
-									else{
-										//Pickup library should be hidden for non-Annex requests
-										if (annexValue != 'Yes'){
-											console.log("TEST YES");
-											pickupLibraryFadeOut(true);					
-										}
-										else{
-											//else just for debugging
-											console.log("TEST NO");
-										}
-									}
-									
-									/*
-									if ($('#facOrGrad').val() == 'Distance student'){
-										if ($('#ItemInfo4').val() == 'Delivery to address'){
-											console.log("FOUND!");
-											$('#ItemInfo4Note').fadeIn(500);
-											$('#ItemInfo4DistanceEdNote').fadeOut(500);
-										}
-										else {
-											console.log("val is " + $('#ItemInfo4').val());
-										}
-									}
-									else {
-										console.log("val is " + $('#facOrGrad').val());
-									}
-									*/
-									
+									$('label[for="PhotoJournalYear"]').fadeIn(500);													  				
+							
 									var fieldsToBeRemoved = ['LoanAuthor', 'ItemInfo4', 'AcceptAlternateEdition'];
 									for (j = 0; j < fieldsToBeRemoved.length; j++){
 								
@@ -792,20 +598,7 @@ $(document).ready(function(){
 									$('label[for="PhotoJournalYear"]').fadeOut(500);
 									
 									
-
-									//Show pickup library unless user is faculty and they filled in campus mailbox
-									if ($('#facOrGrad').val() == 'Faculty'){
-										$('label[for="ItemInfo3"]').fadeIn(500);
-										if ($('#ItemInfo3').val() == ''){
-											pickupLibraryFadeIn();
-										}
-									}
-									else{
-										pickupLibraryFadeIn();
-									}
-
-								
-									
+	
 									//$('#ItemInfo4Note').fadeOut(500)
 									
 									var fieldsToBeRemoved = ['PhotoJournalYear'];
@@ -834,7 +627,7 @@ $(document).ready(function(){
 								}
 																						
 								determinePickupNote();
-			
+					      determineCampusMailbox();
 							});
 	
 					 }
@@ -933,8 +726,6 @@ $(document).ready(function(){
 									}
 								});
 								
-								//console.log("TEST COUNTER IS ");
-								//console.log(testCounter);
 								
 
 								if (missingFields.length > 0){
@@ -963,26 +754,7 @@ $(document).ready(function(){
 
 								
 						});
-					 
-					 
-					 
-					 
-					 
-					 
-					 
-					 
-					 
-					 
-					 
-					 
-					 
-					 
-					 
-					 
-					 
-					 
-					 
-					
+		
 					 $('#content').css('display', 'block');
 
 });
