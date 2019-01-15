@@ -7,6 +7,20 @@
 <!--[if lte IE 6]>
 <link rel="stylesheet" type="text/css" href="css/ie6_or_less.css" />
 <![endif]-->
+<style>
+/*
+#ItemInfo4Note{
+    padding-top: 20px;
+    font-size: 1em;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 4px;
+    color: black;
+    background-color: #fcf8e3;
+    display: block;
+}
+*/
+</style>
 </head>
 <body id="type-b">
 <div id="wrap">
@@ -235,9 +249,8 @@
 											<span class="req" id="ItemInfo4Req">*</span>
 											<b><span id="ItemInfo4Text" class="valid">Pickup location</span></b>
 											<br>
-												<span class="note" id="ItemInfo4Note" style="display: none;">Periodical/Serial will be placed on hold at the library where it is shelved.</span>
-												<span style="display: none;" class="note" id="ItemInfo4DistanceEdNote">Delivery will be to your address in ILLiad which <em>does not</em> update automatically.  You can check or change this by clicking on <a href="<#ACTION action="10" form="81">">this User Information link</a> or by selecting User Information from the left-hand menu. </span>		
-												<span class="note" id="ItemInfo4DistanceEdSerial" style="display: none;">Serials cannot be delivered to your address. You can request a copy of specific articles or sections using the Document Delivery - Copy form.</span>
+												<span class="note" id="ItemInfo4Note" style="display: none;"></span>
+												
 										</span>
 					
 										<select id="ItemInfo4" name="ItemInfo4">
@@ -338,7 +351,6 @@ $(document).ready(function(){
 										$('#ItemInfo4Req').show();
 									}
 									
-									determinePickupNote();
 							}
 							
 							function determineCampusMailbox(){
@@ -346,6 +358,9 @@ $(document).ready(function(){
 								if ($('#facOrGrad').val() == 'Faculty'){
 									if ($('#itemInfo2').val() != 'Yes'){
 										$('label[for="ItemInfo3"]').fadeIn(500);
+									}
+									else {
+										$('label[for="ItemInfo3"]').fadeOut(500);
 									}
 								}
 								else {
@@ -365,7 +380,7 @@ $(document).ready(function(){
 									var pickupMessageArray = [];
 									pickupMessageArray.push("Periodical/Serial will be placed on hold at the library where it is shelved.");
 									pickupMessageArray.push('Delivery will be to your address in ILLiad which <em>does not</em> update automatically.  You can check or change this by clicking on <a href="<#ACTION action="10" form="81">">this User Information link</a> or by selecting User Information from the left-hand menu.');
-									pickupMessageArray.push('Serials cannot be delivered to your address. You can request a copy of specific articles or sections using the Document Delivery - Copy form.');
+									pickupMessageArray.push('Serials cannot be delivered to your address. You can request a copy of specific articles or sections using the <a href="<#ACTION action="10" form="22">&docdelivery=true">Doc Delivery - Copy </a> form.');
 									
 									console.log("pickup array");
 									console.log(pickupMessageArray);
@@ -379,7 +394,7 @@ $(document).ready(function(){
 										  pickupLibraryFadeOut();
 											pickupMessage = pickupMessageArray[2];
 										}
-										else if ($('#ItemInfo5').val() == 'Yes'){
+										else if ($('#itemInfo5').val() == 'Yes'){
 											$('#ItemInfo4Note').fadeOut(500);
 											pickupLibraryFadeIn();
 										}
@@ -399,7 +414,9 @@ $(document).ready(function(){
 									}
 									
 									
-									
+									if (($('#ItemInfo4Note').html != '') && ($('#ItemInfo4Note').html() != pickupMessage)){
+										$('#ItemInfo4Note').hide();
+									}
 									$('#ItemInfo4Note').fadeIn(500);
 									$('#ItemInfo4Note').html(pickupMessage);
 							}
@@ -435,9 +452,7 @@ $(document).ready(function(){
 									if (fieldIndex >= 0){
 										requiredFields.splice(fieldIndex, 1);
 									}
-									
-										
-									
+																	
 									
 							}
 							
@@ -726,32 +741,50 @@ $(document).ready(function(){
 									}
 								});
 								
+								topErrorMessage = '';
 								
-
-								if (missingFields.length > 0){
-									
-									 topErrorMessage = '<p style="color: red;">Required fields are missing.</p>';
+								missingFieldsPresent = missingFields.length > 0;
+								distanceStudent = $('#facOrGrad').val() == 'Distance student'; 
+								serialLoanRequestDistanceStudent = $('#itemInfo2').val() == 'Yes' && distanceStudent;
+								
+								if (missingFieldsPresent || serialLoanRequestDistanceStudent){
+									if (missingFieldsPresent){
+										
+										 topErrorMessage = '<p style="color: red;">Required fields are missing.</p>';
+										 
+										 console.log("MISSING FIELDS ARRAY");
+										 console.log(missingFields);
+										
+										
+										 
+										 console.log("TOP ERROR MESSAGE IS");
+										 console.log(topErrorMessage);
+										
+										 
+										 console.log("RETURNING FALSE");						 
+								 }	
 									 
-									 console.log("MISSING FIELDS ARRAY");
-									 console.log(missingFields);
-									
-									 topErrorMessage += "</div>";
-									 
-									 console.log("TOP ERROR MESSAGE IS");
-									 console.log(topErrorMessage);
-									 if ($('#TopErrorMessage').length == 0){
+								 if (serialLoanRequestDistanceStudent){
+										topErrorMessage += '<p style="color: red;">Distance students cannot request delivery of a serial to their address.</p>';
+								 }
+								 
+								  if ($('#TopErrorMessage').length == 0){
 										 topErrorMessage = '<div id="TopErrorMessage">' + topErrorMessage + '</div>';
 										 $('#pageHeader').after(topErrorMessage);
-									 }
-									 else {
-									  $('#TopErrorMessage').html('');
-										$('#TopErrorMessage').html(topErrorMessage);
-									 }
-									 
-									 console.log("RETURNING FALSE");
-									 return false;						 
-								 }	
-
+									}
+									else {
+											$('#TopErrorMessage').html('');
+											$('#TopErrorMessage').html(topErrorMessage);
+									}
+									
+									return false;
+							}
+							
+							if (distanceStudent){
+								//I believe 
+							  $('#ItemInfo4').append($("<option></option>").text('Delivery to address'));
+								$('#ItemInfo4').val('Delivery to address');
+							}
 								
 						});
 		
