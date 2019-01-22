@@ -144,7 +144,25 @@
 						</span>
 						<textarea id="Notes" name="Notes" rows="2" cols="40" class="f-name" ><#PARAM name="Notes"></textarea><br />
 				</label>
+				
+				<label for="ItemInfo2" style="display: none;">
+						<span class="field">
+							<span class="req">*</span>
+							<span class="valid"><b>Status</b></span>
+							<br>
+							<!--<span class="note">You must be a faculty member or graduate student to use this service.</span>-->
+						</span>
 					
+						<select id="ItemInfo2" name="ItemInfo2">
+							<option selected><#PARAM name="ItemInfo2"></option>
+							<option>Faculty</option>
+							<option>Graduate student</option>
+							<option>Distance student</option>
+							<option>Undergraduate</option>
+							<option>Other</option>
+						</select>
+					</label>
+					<br>
 					<#INCLUDE filename="include_request_cited.html">                
                     <#INCLUDE filename="include_request_buttons.html">
 				</fieldset>
@@ -156,6 +174,7 @@
 											 var docDeliveryStatus = $('input#ItemInfo1').attr('value');
 											 if ((docDeliveryStatus == 'DocDelivery') || (docDeliveryStatus == 'DocDeliveryPublic' )){
 													$('#requestCited').css('display', 'none');
+													$('label[for="ItemInfo2"]').css('display', 'block');
 													$('#pageHeader').html("Edit Document Delivery Request -- photocopy");
 													$('#pageHeader').after('<p id="pageIntroduction">Edit your document delivery request here.  You must be a faculty member or graduate student to use this service.</p>');
 											 }
