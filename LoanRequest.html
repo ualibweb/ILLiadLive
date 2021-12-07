@@ -208,7 +208,7 @@
 									
 									<label for="itemInfo5" style="display: none;">
 											<span class="field">
-												<b><span id="itemInfo5Text" class="valid">Is this an Annex item?</span></b>
+												<b><span id="itemInfo5Text" class="valid">Is this an Archival Facility item?</span></b>
 												<br>
 												<!--<span id="facOrGradNote" class="note">You must be a faculty member or graduate student to use this service.</span>-->
 											</span>
@@ -339,7 +339,7 @@ $(document).ready(function(){
 							
 							
 							$('#pageHeader').html("Document Delivery - Loan (UA Libraries Collection)");
-							$('#pageHeader').after('<p id="pageIntroduction">Use this form to request document delivery for items you want to check out from University Libraries (this includes Annex requests). Faculty can choose to have items delivered to their campus mailbox via intracampus mail. You may be able to select a pickup library for an item depending on the type of the request.</p>');
+							$('#pageHeader').after('<p id="pageIntroduction">Use this form to request document delivery for items you want to check out from University Libraries (this includes Archival Facility requests). Faculty can choose to have items delivered to their campus mailbox via intracampus mail. You may be able to select a pickup library for an item depending on the type of the request.</p>');
 							$('label[for="facOrGrad"]').css('display', 'block');
 							$('label[for="ItemInfo4"]').css('display', 'block');
 							$('label[for="itemInfo2"]').css('display', 'block');
@@ -365,7 +365,7 @@ $(document).ready(function(){
 								$.proxy(pickupLibraryChange, $('#ItemInfo4'))();		;
 							});
 							
-							//Annex request
+							//Archival Facility request
 							$('#itemInfo5').change(function(){
 							  $.proxy(annexRequestChange, $('#itemInfo5'))();		
 							});
