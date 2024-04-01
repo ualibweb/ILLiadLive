@@ -1,0 +1,330 @@
+<section name="bookrequest-info">
+    <div class="form-group col-md-9 display-none" id="formGroup-itemInfo2">
+        <label for="itemInfo2">
+            <span class="field">
+                <span class="<#ERROR name='ERRORitemInfo2'>">
+                    Serial loan request
+                </span>
+                <br>
+                <span class="small-notes">
+                    Indicate if you would like to make a loan request for a serial.
+                </span>
+            </span>
+        </label>
+        <select id="itemInfo2" name="itemInfo2">
+            <option selected>Yes</option>
+            <option>No</option>
+        </select>
+    </div>
+
+
+    <div class="form-group col-md-9" id="formGroup-LoanAuthor">
+        <label for="LoanAuthor">
+                <span class="field">
+                    <span class="<#ERROR name='ERRORLoanAuthor'>">
+                        Author/Editors
+                        <span class="req display-none">(required)</span>
+                    </span>
+                </span>
+        </label>
+        <input type="text" class="form-control" name="LoanAuthor" id="LoanAuthor"
+            value="<#PARAM name='LoanAuthor'>">
+    </div>
+
+
+    <div class="form-group col-md-9" id="formGroup-LoanTitle">
+        <label for="LoanTitle">
+                <span class="field">
+                    <span class="<#ERROR name='ERRORLoanTitle'>">
+                        Title
+                        <span class="req">(required)</span>
+                    </span>
+                    <br>
+                    <span class="small-notes">
+                        We do not process requests for textbooks.
+                    </span>
+                </span>
+        </label>
+        <textarea type="text" class="form-control" name="LoanTitle" id="LoanTitle"
+                rows="2" cols="40"><#PARAM name='LoanTitle'></textarea>
+    </div>
+
+
+    <div class="form-group col-md-9" id="formGroup-LoanPublisher">
+        <label for="LoanPublisher">
+                <span class="field">
+                    <span class="<#ERROR name='ERRORLoanPublisher'>">
+                        Publisher
+                    </span>
+                </span>
+        </label>
+        <input type="text" class="form-control" name="LoanPublisher" id="LoanPublisher"
+            value="<#PARAM name='LoanPublisher'>">
+    </div>
+
+
+    <div class="form-group col-md-9" id="formGroup-LoanPlace">
+        <label for="LoanPlace">
+                <span class="field">
+                    <span class="<#ERROR name='ERRORLoanPlace'>">
+                        Place of Publication
+                    </span>
+                </span>
+        </label>
+        <input type="text" class="form-control" name="LoanPlace" id="LoanPlace"
+            value="<#PARAM name='LoanPlace'>">
+    </div>
+
+
+    <div class="form-group col-md-9" id="formGroup-LoanDate">
+        <label for="LoanDate">
+                <span class="field">
+                    <span class="<#ERROR name='ERRORLoanDate'>">
+                        Date of Publication
+                    </span>
+                </span>
+        </label>
+        <input type="text" class="form-control" name="LoanDate" id="LoanDate"
+            value="<#PARAM name='LoanDate'>">
+    </div>
+
+
+    <div class="form-group col-md-9" id="formGroup-LoanEdition">
+        <label for="LoanEdition">
+                <span class="field">
+                    <span class="<#ERROR name='ERRORLoanEdition'>">
+                        Edition
+                    </span>
+                </span>
+        </label>
+        <input type="text" class="form-control" name="LoanEdition" id="LoanEdition"
+            value="<#PARAM name='LoanEdition'>">
+    </div>
+
+
+    <div class="form-group col-md-9 display-none" id="formGroup-PhotoJournalVolume">
+        <label for="PhotoJournalVolume">
+            <span class="field">
+                <span class="<#ERROR name='ERRORPhotoJournalVolume'>">Volume</span>
+            </span>
+        </label>
+        <input id="PhotoJournalVolume" name="PhotoJournalVolume" type="text" class="form-control"  value="<#PARAM name='volume'>">
+    </div>
+
+
+    <div class="form-group col-md-9 display-none" id="formGroup-PhotoJournalIssue">
+        <label for="PhotoJournalIssue">
+            <span class="field">
+                <span class="<#ERROR name='ERRORPhotoJournalIssue'>">Issue Number or Designation</span>
+            </span>
+        </label>
+        <input id="PhotoJournalIssue" name="PhotoJournalIssue" type="text" class="form-control"  value="<#PARAM name='issue'>">
+    </div>
+
+
+    <div class="form-group col-md-9 display-none" id="formGroup-PhotoJournalMonth">
+        <label for="PhotoJournalMonth">
+            <span class="field">
+                <span class="<#ERROR name='ERRORPhotoJournalMonth'>">Month</span>
+            </span>
+        </label>
+        <input id="PhotoJournalMonth" name="PhotoJournalMonth" type="text" class="form-control"  value="<#PARAM name='PhotoJournalMonth'>">
+    </div>
+
+
+    <div class="form-group col-md-9 display-none" id="formGroup-PhotoJournalYear">
+        <label for="PhotoJournalYear">
+            <span class="field">
+                <span class="<#ERROR name='ERRORPhotoJournalYear'>">
+                    Year
+                    <span class="req">(required)</span>
+                </span>
+            </span>
+        </label>
+        <input id="PhotoJournalYear" name="PhotoJournalYear" type="text" class="form-control"  value="<#PARAM name='year'>">
+    </div>
+
+
+
+    <div class="form-group col-md-9" id="formGroup-ISSN">
+        <label for="ISSN">
+                <span class="field">
+                    <span class="<#ERROR name='ERRORISSN'>">
+                        ISSN/ISBN (International Standard Serial/Book Number)
+                    </span>
+                    <br>
+                <span class="small-notes" id="ISSNNote">
+                    If given will speed request processing
+                </span>
+                </span>
+        </label>
+        <input type="text" class="form-control" name="ISSN" id="ISSN" value="<#PARAM name='ISSN'>">
+    </div>
+
+
+    <div class="form-group col-md-9" id="formGroup-CallNumber">
+        <label for="CallNumber">
+            <span class="field">
+                <span class="<#ERROR name='ERRORCallNumber'>">
+                    Call Number
+                    <span class="req display-none">(required)</span>
+                </span>
+            </span>
+        </label>
+        <input type="text" class="form-control" name="CallNumber" id="CallNumber">
+    </div>
+
+
+    <div class="form-group col-md-9" id="formGroup-ESPNumber">
+        <label for="ESPNumber">
+            <span class="field">
+                <span class="<#ERROR name='ERRORESPNumber'>">
+                    OCLC or Docline UI Number
+                </span>
+            </span>
+        </label>
+        <input type="text" class="form-control" name="ESPNumber" id="ESPNumber" value="<#PARAM name='ESPNumber'>">
+    </div>
+
+
+    <div class="form-group col-md-9" id="formGroup-NotWantedAfter">
+        <label for="NotWantedAfter">
+            <span class="field">
+                <span class="<#ERROR name='ERRORNotWantedAfter'>">
+                    Not Wanted After Date
+                    <span class="req">(required)</span>
+                </span>
+                <br />
+                <span class="small-notes">
+                    (MM/DD/YYYY)
+                </span>
+            </span>
+        </label>
+        <input type="text" class="form-control" name="NotWantedAfter" id="NotWantedAfter" value="<#PARAM name='NotWantedAfter'>">
+    </div>
+
+
+    <div class="form-group col-md-9" id="formGroup-AcceptNonEnglish">
+        <label for="AcceptNonEnglish">
+            <span class="field">
+                <span class="<#ERROR name='ERRORAcceptNonEnglish'>">
+                Will you accept the item in a language other than English?
+                    <span class="req">(required)</span>
+                </span>
+                <br />
+                <span class="small-notes">
+                    If yes, specify acceptable languages in the notes field.
+                </span>
+            </span>
+        </label>
+        <select id="AcceptNonEnglish" name="AcceptNonEnglish">
+            <option selected><#PARAM name="AcceptNonEnglish"></option>
+            <option>No</option>
+            <option>Yes</option>
+        </select>
+    </div>
+
+
+    <div class="form-group col-md-9" id="formGroup-AcceptAlternateEdition">
+        <label for="AcceptAlternateEdition">
+            <span class="field">
+                <span class="<#ERROR name='ERRORAcceptAlternateEdition'>">
+                    Will you accept an alternate edition of this item?
+                    <span class="req">(required)</span>
+                </span>
+            </span>
+        </label>
+        <select id="AcceptAlternateEdition" name="AcceptAlternateEdition"
+                class="custom-select mr-sm-2">
+            <option selected><#PARAM name="AcceptAlternateEdition"></option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+
+    <div class="form-group col-md-9 display-none" id="formGroup-facOrGrad">
+        <label for="facOrGrad">
+            <span class="field">
+                <span class="<#ERROR name='ERRORfacOrGrad'>">
+                    Status
+                    <span class="req">(required)</span>
+                </span>
+            </span>
+        </label>
+
+        <select id="facOrGrad" name="facOrGrad">
+            <option selected></option>
+            <option>Faculty</option>
+            <option>Graduate student</option>
+            <option>Distance student</option>
+            <option>Undergraduate</option>
+            <option>Other</option>
+        </select>
+    </div>
+
+
+    <div class="form-group col-md-9 display-none" id="formGroup-itemInfo5">
+        <label for="itemInfo5">
+            <span class="field">
+                <span class="<#ERROR name='ERRORitemInfo5'>" id = "itemInfo5Text">
+                    Is this an Archival Facility item?
+                </span>
+            </span>
+        </label>
+
+        <select id="itemInfo5" name="itemInfo5">
+            <option selected><#PARAM name="ItemInfo5"></option>
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+    </div>
+
+
+    <div class="form-group col-md-9 display-none" id="formGroup-ItemInfo3">
+        <label for="ItemInfo3">
+            <span class="field">
+                <span class="<#ERROR name='ERRORItemInfo3'>">Campus mailbox</span><br>
+                <span class="small-notes">If you specify a campus mailbox, pickup library is not required. Expected delivery time is 2-3 days.</span>
+            </span>
+        </label>
+        <textarea id="ItemInfo3" name="ItemInfo3" rows="2" class="form-control"></textarea>
+    </div>
+
+
+    <div class="form-group col-md-9 display-none" id="formGroup-ItemInfo4">
+        <label for="ItemInfo4">
+            <span class="field">
+                <span class="<#ERROR name='ERRORItemInfo4'>">
+                    Pickup Location
+                    <span class="req">(required)</span>
+                </span><br>
+                <!-- Will be populated with messages using javascript-->
+                <span class="note display-none" id="ItemInfo4Note"></span>
+            </span>
+        </label>
+
+        <select id="ItemInfo4" name="ItemInfo4">
+            <option selected><#PARAM name="ItemInfo4"></option>
+            <option>Gorgas</option>
+            <option>Rodgers</option>
+            <option>Bruno</option>
+        </select>
+    </div>
+
+
+    <div class="form-group col-md-9" id="formGroup-Notes">
+        <label for="Notes">
+                <span class="field">
+                    <span class="<#ERROR name='ERRORNotes'>">
+                        Notes
+                    </span><br>
+                    <span class="small-notes">Put any information here that may help us find the item, as well as any other pertinent information.</span>
+                </span>
+        </label>
+        <textarea id="Notes" name="Notes" rows="2" cols="40"
+            class="form-control"><#PARAM name='Notes'></textarea><br>
+    </div>
+</section>
+<script src="js/parse_field_values_from_url.js"></script>
+<#INCLUDE filename="include_parse_year.html">

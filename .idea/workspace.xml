@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0d5a3e5d-c7ef-4eac-89b0-8327987b4e7c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/ArticleRequest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DetailedInformation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EditArticleRequest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EditLoanRequest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ILLiadMainMenu.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoanRequest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logon.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logon2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SelectDocDeliveryType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewDefaultDetailed.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewDetailedInformation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewOutstandingRequests.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewRenewCheckedOutDetailedInformation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewResubmitDetailedInformation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/include_footer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/include_header.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/include_header_request.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/include_menu.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/include_request_cited.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/include_request_fields.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/docDeliveryFunctions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/replaceTransactionInformation.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2eVYIcZlSlgsIivs98ZP4tI5fB3" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0d5a3e5d-c7ef-4eac-89b0-8327987b4e7c" name="Changes" comment="" />
+      <created>1711991133733</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711991133733</updated>
+      <workItem from="1711991134908" duration="417000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

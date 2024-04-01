@@ -1,196 +1,53 @@
-<html>
-<head>
-<title>ILLiad - Edit Copy Request</title>
-<link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+<!DOCTYPE html>
+<html lang="en-US">
 
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
-<!--[if lte IE 6]>
-<link rel="stylesheet" type="text/css" href="css/ie6_or_less.css" />
-<![endif]-->
+<head>
+	<title>ILLiad - Edit Article Request</title>
+	<#INCLUDE filename="include_head.html">
 </head>
-<body id="type-b">
-<div id="wrap">
-  <#INCLUDE filename="include_header_request.html">
-  <div id="content-wrap">
-  	<#INCLUDE filename="include_menu.html">
-    <div id="content" style="display: none;">
-		<form action="illiad.dll" method="post" name="EditArticleRequest" class="f-wrap-request">
-			<input type="hidden" name="ILLiadForm" value="EditArticleRequest">
-			<input type="hidden" name="Username" value="<#PARAM name="Username">">
-			<input type="hidden" name="SessionID" value="<#PARAM name="SessionID">">
-			<input type="hidden" name="TransactionNumber" value="<#PARAM name="TransactionNumber">">
-				<div class="req"><b>*</b> Indicates required field</div>
-				<fieldset>			
-					<h3 id="pageHeader">Edit Copy Request</h3>
-					<#STATUS>
-					<h2>Describe the item you want</h2>			
-					<label for="PhotoJournalTitle">
-						<span class="field">
-							<span class="req">*</span>
-							<span class="<#ERROR name="ERRORPhotoJournalTitle">"><b>Title (Journal, Conference Proceedings, Anthology)</b></span><br />
-							<span class="note">Please do not abbreviate unless your citation is abbreviated</span>
-						</span>
-						<textarea id="PhotoJournalTitle" name="PhotoJournalTitle" rows="2" cols="40" class="f-name" ><#PARAM name="PhotoJournalTitle"></textarea><br />
-				</label>		
-						
-					<label for="PhotoJournalVolume">
-						<span class="field">
-							<span class="<#ERROR name="ERRORPhotoJournalVolume">"><b>Volume</b></span>
-						</span>
-						<input id="PhotoJournalVolume" name="PhotoJournalVolume" type="text" size="40" class="f-name"  value="<#PARAM name="PhotoJournalVolume">"><br />
-				</label>
-					
-					<label for="PhotoJournalIssue">
-						<span class="field">
-							<span class="<#ERROR name="ERRORPhotoJournalIssue">"><b>Issue Number or Designation</b></span>
-						</span>
-						<input id="PhotoJournalIssue" name="PhotoJournalIssue" type="text" size="40" class="f-name"  value="<#PARAM name="PhotoJournalIssue">"><br />
-				</label>
-					
-					<label for="PhotoJournalMonth">
-						<span class="field">
-							<span class="<#ERROR name="ERRORPhotoJournalMonth">"><b>Month</b></span>
-						</span>
-						<input id="PhotoJournalMonth" name="PhotoJournalMonth" type="text" size="40" class="f-name"  value="<#PARAM name="PhotoJournalMonth">"><br />
-				</label>
-					
-					<label for="PhotoJournalYear">
-						<span class="field">
-							<span class="req">*</span>
-							<span class="<#ERROR name="ERRORPhotoJournalYear">"><b>Year</b></span>
-						</span>
-						<input id="PhotoJournalYear" name="PhotoJournalYear" type="text" size="40" class="f-name"  value="<#PARAM name="PhotoJournalYear">"><br />
-				</label>
-					
-					<label for="PhotoJournalInclusivePages">
-						<span class="field">
-							<span class="req">*</span>
-							<span class="<#ERROR name="ERRORPhotoJournalInclusivePages">"><b>Inclusive Pages</b></span>
-						</span>
-						<input id="PhotoJournalInclusivePages" name="PhotoJournalInclusivePages" type="text" size="40" class="f-name"  value="<#PARAM name="PhotoJournalInclusivePages">"><br />
-				</label>
-					
-					<label for="ISSN">
-						<span class="field">
-							<span class="<#ERROR name="ERRORISSN">"><b>ISSN/ISBN (International Standard Serial/Book Number)</b></span><br />
-							<span class="note">If given will speed request processing</span>
-						</span>
-						<input id="ISSN" name="ISSN" type="text" size="20" class="f-name"  value="<#PARAM name="ISSN">"><br />
-				</label>
-					
-					<label for="CallNumber">
-						<span class="field">
-							<span class="<#ERROR name="ERRORCallNumber">"><b>Call Number</b></span>
-						</span>
-						<input id="CallNumber" name="CallNumber" type="text" size="20" class="f-name"  value="<#PARAM name="CallNumber">"><br />
-				</label>
-					
-					<label for="ESPNumber">
-						<span class="field">
-							<span class="<#ERROR name="ERRORESPNumber">"><b>OCLC or Docline UI Number</b></span>
-						</span>
-						<input id="ESPNumber" name="ESPNumber" type="text" size="20" class="f-name"  value="<#PARAM name="ESPNumber">"><br />
-				</label>
-					
-					<label for="PhotoArticleAuthor">
-						<span class="field">
-							<span class="<#ERROR name="ERRORPhotoArticleAuthor">"><b>Article Author</b></span>
-						</span>
-						<input id="PhotoArticleAuthor" name="PhotoArticleAuthor" type="text" size="40" class="f-name"  value="<#PARAM name="PhotoArticleAuthor">"><br />
-				</label>
-					
-					<label for="PhotoArticleTitle">
-						<span class="field">
-							<span class="req">*</span>
-							<span class="<#ERROR name="ERRORPhotoArticleTitle">"><b>Article Title</b></span>
-						</span>
-						<textarea id="PhotoArticleTitle" name="PhotoArticleTitle" rows="2" cols="40" class="f-name" ><#PARAM name="PhotoArticleTitle"></textarea><br />
-				</label>
-							
-					<label for="NotWantedAfter">
-						<span class="field">
-							<span class="req">*</span>
-							<span class="<#ERROR name="ERRORNotWantedAfter">"><b>Not Wanted After Date</b></span><br />
-							<span class="note">(MM/DD/YYYY)</span>
-						</span>
-						<input id="NotWantedAfter" name="NotWantedAfter" type="text" size="40" class="f-name"  value="<#PARAM name="NotWantedAfter">"><br />
-				</label>
-					
-					<label for="AcceptNonEnglish">
-						<span class="field">
-							<span class="req">*</span><span class="<#ERROR name="ERRORAcceptNonEnglish">"><b>Will you accept the item in a language other than English?</b></span><br />
-							<span class="note">If yes, specify acceptable languages in the notes field.</span>
-						</span>
-						<select id="AcceptNonEnglish" name="AcceptNonEnglish" size="1" class="f-name" >
-							<option selected><#PARAM name="AcceptNonEnglish"></option>
-							<option>No</option>
-							<option>Yes</option>
-						</select><br />
-				</label>
-				
-						<label for="ItemInfo1" style="display: none;">
-														
-										<input id="ItemInfo1" name="ItemInfo1" type="text" size="40" class="f-name"  value="<#PARAM name="ItemInfo1">"><br />
-										
-						</label>
-					
-					
-					
-					<label for="Notes">
-						<span class="field">
-							<span class="<#ERROR name="ERRORNotes">"><b>Notes</b></span><br />
-							<span class="note">Put any information here that may help us find the item, as well as any other pertinent information.</span>
-						</span>
-						<textarea id="Notes" name="Notes" rows="2" cols="40" class="f-name" ><#PARAM name="Notes"></textarea><br />
-				</label>
-				
-				<label for="ItemInfo2" style="display: none;">
-						<span class="field">
-							<span class="req">*</span>
-							<span class="valid"><b>Status</b></span>
-							<br>
-							<!--<span class="note">You must be a faculty member or graduate student to use this service.</span>-->
-						</span>
-					
-						<select id="ItemInfo2" name="ItemInfo2">
-							<option selected><#PARAM name="ItemInfo2"></option>
-							<option>Faculty</option>
-							<option>Graduate student</option>
-							<option>Distance student</option>
-							<option>Undergraduate</option>
-							<option>Other</option>
-						</select>
-					</label>
-					<br>
-					<#INCLUDE filename="include_request_cited.html">                
-                    <#INCLUDE filename="include_request_buttons.html">
-				</fieldset>
-				
-				 <script>
-								
-										$(document).ready(function(){
-											 console.log("JQUERY LOADS!");
-											 var docDeliveryStatus = $('input#ItemInfo1').attr('value');
-											 if ((docDeliveryStatus == 'DocDelivery') || (docDeliveryStatus == 'DocDeliveryPublic' )){
-													$('#requestCited').css('display', 'none');
-													$('label[for="ItemInfo2"]').css('display', 'block');
-													$('#pageHeader').html("Edit Document Delivery Request -- photocopy");
-													$('#pageHeader').after('<p id="pageIntroduction">Edit your document delivery request here.  You must be a faculty member or graduate student to use this service.</p>');
-											 }
-											 $('#content').css('display', 'block');
-										});
-							
-					</script>
-					<script>
-						console.log("VANILLA JS");
-						var content = document.querySelector('#content'); 
-						content.setAttribute('display', 'block');
-					</script>
-		</form>		
+
+<body>
+    <#INCLUDE filename="include_header.html">
+    <#INCLUDE filename="include_menu.html">
+
+    <div class="container">
+        <main id="content" aria-label="Content" class="display-none">
+            <form action="illiad.dll" method="post" name="EditArticleRequest">
+                <input type="hidden" name="ILLiadForm" value="EditArticleRequest">
+                <input type="hidden" name="Username" value="<#PARAM name="Username">">
+			    <input type="hidden" name="SessionID" value="<#PARAM name="SessionID">">
+                <input type="hidden" name="TransactionNumber" value="<#PARAM name='TransactionNumber'>">
+                <input type="hidden" name="ItemInfo1" id="ItemInfo1" value="<#PARAM name='ItemInfo1'>">
+                <#FORMSTATE>
+
+                <div class="mainContent">
+                    <fieldset>
+                        <h2 class="page-header" id="pageHeader">Edit Copy Request</h2>
+                        <#INCLUDE filename="include_edit_article_request_fields.html">
+                        <#INCLUDE filename="include_request_cited.html">
+                        <#INCLUDE filename="include_request_buttons.html">
+                    </fieldset>
+                </div>
+            </form>
+        </main>
       	<#INCLUDE filename="include_footer.html">
-    </div>    
-  </div>
-</div>
+    </div>
+    <#INCLUDE filename='include_js_helpers.html'> <!--- includes helper javascript functions for interacting with the page's html -->
+    <script>
+        $(document).ready(function(){
+            var docDeliveryStatus = $('input#ItemInfo1').attr('value');
+            if ((docDeliveryStatus == 'DocDelivery') || (docDeliveryStatus == 'DocDeliveryPublic' )){
+                hideElement('#requestCited'); // $('#requestCited').css('display', 'none');
+
+                unHideElement('#formGroup-ItemInfo2'); //$('label[for="ItemInfo2"]').css('display', 'block');
+                $('#pageHeader').html("Edit Document Delivery Request -- photocopy");
+                $('#pageHeader').after('<p id="pageIntroduction">Edit your document delivery request here.  You must be a faculty member or graduate student to use this service.</p>');
+            }
+            unHideElement('#content'); // $('#content').removeClass('display-none'); // show content
+        });
+
+
+    </script>
 </body>
 </html>
+

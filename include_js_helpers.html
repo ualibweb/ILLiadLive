@@ -1,0 +1,16 @@
+<script>
+    // helper function to add error message to a given field
+    function addErrorMessageToField(fieldName, errorMessage) {
+        if ($("#feedback-" + fieldName).length == 0) {
+            // 'invalid-feedback' is bootstrap class
+            let feedbackDiv =
+                "<div id='feedback-" + fieldName + "' class='invalid-feedback'>" + errorMessage + "</div>";
+
+            $("#formGroup-" + fieldName).append(feedbackDiv)
+        } else {
+            $("#feedback-" + fieldName).html(errorMessage);
+        }
+
+        $("#" + fieldName).addClass("is-invalid"); // add bootstrap class
+    }
+</script>
