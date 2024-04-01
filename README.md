@@ -1,6 +1,8 @@
 # Documentation
 The file describes the code for Illiad's frontend
 
+*The old version of illiad can be found in the old-illiad branch*
+
 ## Relevant URLs
 - [A knowledge repository on everything ILLiad](https://support.atlas-sys.com/hc/en-us/categories/360000716874-ILLiad)
 

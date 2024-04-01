@@ -2,29 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d5a3e5d-c7ef-4eac-89b0-8327987b4e7c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/ArticleRequest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DetailedInformation.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EditArticleRequest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EditLoanRequest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ILLiadMainMenu.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoanRequest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logon.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logon2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SelectDocDeliveryType.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewDefaultDetailed.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewDetailedInformation.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewOutstandingRequests.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewRenewCheckedOutDetailedInformation.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewResubmitDetailedInformation.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include_footer.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include_header.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include_header_request.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include_menu.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include_request_cited.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include_request_fields.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/docDeliveryFunctions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/replaceTransactionInformation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +34,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1711991133733</updated>
-      <workItem from="1711991134908" duration="417000" />
+      <workItem from="1711991134908" duration="571000" />
     </task>
     <servers />
   </component>
