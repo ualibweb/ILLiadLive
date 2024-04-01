@@ -1,0 +1,59 @@
+Alltel (from: 50, msg: 116, total: 116)
+Enter your phone number. Goes to number@message.alltel.com.
+
+Ameritech (ACSWireless) (from: 120, msg: 120, total: 120)
+Enter your phone number. Goes to number@paging.acswireless.com
+
+AT&T (from: 20, msg: 160, total: 160)
+Enter your phone number. Goes to number@txt.att.net
+
+Bellsouth (from: 20, msg: 160, total: 160)
+Enter your phone number. Goes to number@bellsouth.cl
+
+BellSouth Mobility (from: 15, msg: 160, total: 160)
+Enter your phone number. Goes to number@blsdcs.net
+
+Cellular South (from: 50, msg: 155, total: 155)
+Enter your phone number. Messages are sent to number@csouth1.com
+
+CellularOne (Dobson) (from: 20, msg: 120, total: 120)
+Enter your phone number. Goes to number@mobile.celloneusa.com
+
+CellularOne West (from: 20, msg: 120, total: 120)
+Enter your phone number. Goes to number@mycellone.com
+
+Cincinnati Bell (from: 20, msg: 50, total: 50)
+Enter your phone number. Goes to number@gocbw.com
+
+Mobilfone (from: 20, msg: 160, total: 160)
+Enter your phone number. Goes to number@page.mobilfone.com
+
+Sprint PCS (from: 15, msg: 160, total: 160)
+Enter your 10-digit phone number. Goes to @messaging.sprintpcs.com
+
+Sprint PCS - Short Mail (from: 15, msg: 1000, total: 1000)
+Enter your phone number. Goes to @sprintpcs.com
+
+SunCom (from: 18, msg: 110, total: 110)
+Enter your number. Email will be sent to number@tms.suncom.com.
+
+SureWest Communications (from: 20, msg: 200, total: 200)
+Enter your phone number. Message will be sent to number@mobile.surewest.com
+
+T-Mobile USA (from: 30, msg: 160, total: 160)
+Messages are sent to number@tmomail.net
+
+T-Mobile USA (Sidekick) (from: 30, msg: 10000, total: 10000)
+Messages are sent to username@tmail.com
+
+US Cellular (from: , msg: 150, total: 150)
+Enter a 10 digit USCC Phone Number. Messages are sent to number@email.uscc.net
+
+Verizon Wireless (from: 34, msg: 140, total: 140)
+Enter your 10-digit phone number. Messages are sent via email to number@vtext.com.
+
+Verizon Wireless (myairmail.com) (from: 34, msg: 140, total: 140)
+Enter your phone number. Messages are sent via to number@myairmail.com.
+
+Virgin Mobile USA (from: 20, msg: 160, total: 160)
+Enter your phone number. Messages are sent to number@vmobl.com.
