@@ -42,7 +42,7 @@ Both of these files are included with `include_head.html`
 This directory contains the javascript files used throughout the site. The following are some of the important files it contains:
 - `constants.js` - contains javascript constant objects that are used across various scripts
 - `atlasUtility.js` - performs javascript interactions on various elements on site load. For example, hiding all elements that fulfill a certain criteria on the current page. Also provides some utility functions
-- `docDeliveryFunctions.js` - contains event handlers and utility functions for various javascript interactions across the website
+- `docDeliveryFunctions.js` - contains event handlers and utility functions for various javascript interactions across the website. Most of the code responsible for hiding/showing form elements across the different forms is located here.
 - `parse_field_values_from_url.js` - when the document is ready, this script extracts field values from the page's url and fills them in the input fields accordingly
 
 
@@ -59,3 +59,6 @@ This directory contains the javascript files used throughout the site. The follo
 - `include_request_buttons.html` - contains the action buttons for the various forms
 - `include_request_cited.html` - contains the HTML for the "Where did you learn about this item?" section in the forms
 
+
+## Filling in form fields
+Some form fields are automatically filled in as soon as they appear on the page. This is done using the #PARAM DLL tag or with custom javascript. The main js file handling this is `js/parse_field_values_from_url.js`
