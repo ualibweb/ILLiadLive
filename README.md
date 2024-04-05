@@ -28,7 +28,7 @@ Important files in the root directory include:
 - include_request_buttons.html
 - include_request_cited.html
 
-This file will walkthrough important views in the Illiad frontend and their corresponding source code files.
+This file will walk through important views in the Illiad frontend and their corresponding source code files.
 
 
 ## /css directory
@@ -42,7 +42,7 @@ Both of these files are included with `include_head.html`
 This directory contains the javascript files used throughout the site. The following are some of the important files it contains:
 - `constants.js` - contains javascript constant objects that are used across various scripts
 - `atlasUtility.js` - performs javascript interactions on various elements on site load. For example, hiding all elements that fulfill a certain criteria on the current page. Also provides some utility functions
-- `docDeliveryFunctions.js` - contains event handlers and utility functions for various javascript interactions across the website
+- `docDeliveryFunctions.js` - contains event handlers and utility functions for various javascript interactions across the website. Most of the code responsible for hiding/showing form elements across the different forms is located here.
 - `parse_field_values_from_url.js` - when the document is ready, this script extracts field values from the page's url and fills them in the input fields accordingly
 
 
@@ -53,9 +53,23 @@ This directory contains the javascript files used throughout the site. The follo
 - `EditArticleRequest.html` - the source code file for the edit version of the Copy/Doc Delivery - Copy forms
 - `LoanRequest.html` - the source code file for the Loan/Doc Delivery - Loan forms
 - `EditLoanRequest.html` - the source code file for the edit version of the Loan/Doc Delivery - Loan forms
-- `include_article_request_fields.html` - contains form fields for the Copy/Doc Delivery - Copy forms. This file gets included in `ArticleRequest.html` and `EditArticleRequest.html` using #INCLUDE
-- `include_loan_request_fields.html` - contains form fields for the Loan/Doc Delivery - Loan forms. This file gets included in `LoanRequest.html` and `EditLoanRequest.html` using #INCLUDE
+- `include_article_request_fields.html` - contains form fields for the Copy/Doc Delivery - Copy forms. This file gets included in `ArticleRequest.html` using #INCLUDE
+- `include_loan_request_fields.html` - contains form fields for the Loan/Doc Delivery - Loan forms. This file gets included in `LoanRequest.html` using #INCLUDE
+- `include_edit_article_request_fields.html` - contains form fields for `EditArticleRequest.html`
+- `include_edit_loan_request_fields.html` - contains form fields for `EditLoanRequest.html`
 - `include_head.html` - is typically included using #INCLUDE in the head tag of other HTML files. It imports various css and javascript files
 - `include_request_buttons.html` - contains the action buttons for the various forms
 - `include_request_cited.html` - contains the HTML for the "Where did you learn about this item?" section in the forms
 
+
+## Filling in form fields
+Some form fields are automatically filled in as soon as they appear on the page. 
+This is done using the #PARAM DLL tag or with custom javascript. 
+The main Javascript file handling this is `js/parse_field_values_from_url.js`.
+For the custom javascript, the field values are usually derived from the URL query parameters. Below is a list of query
+parameter keys and their corresponding field value:
+
+- `callno`, `callnumber` => "Call Number" field
+- `atitile` => "Article or Chapter Title" field
+- `title` => "Title (Journal, Book, Conference Proceedings, Anthology)" field
+- `aulast` => the "Author/Editors" field on the Physical Item Request form, the "Article or Chapter Author" on the Scan Request form

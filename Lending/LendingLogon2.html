@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<title>ILLiad - Logon</title>
+	<#INCLUDE filename="../include_head.html">
+</head>
+
+<body>
+	<header id="header" class="head">
+		        <div style="background-color:#900">
+			  <a href="https://lib.ua.edu">
+		<img src="https://www.lib.ua.edu/wp-content/uploads/ualib-logo-capstone-ill-2.png" style="width:307px;height:auto;" alt="University of Alabama Libraries"/></a>
+			</div>
+	</header>
+
+	<div class="container">
+		<main id="content" aria-label="Content">
+			<div id="status" class="container"><#STATUS></div>
+
+			<form action="<#DLL>" method="post" name="Logon">
+				<input type="hidden" name="ILLiadForm" value="Logon">
+				<#FORMSTATE>
+
+					<div class="logon-directions">
+						<div>Enter your user information below.</div>
+						<div>Then press the Logon to ILLiad button to continue.</div>
+					</div>
+
+					<div class="logon-field form-group col-md-8">
+						<label for="username">
+							Username
+						</label>
+						<input type="text" class="form-control" name="username" id="username" value="">
+					</div>
+
+					<div class="logon-field form-group col-md-8">
+						<label for="password">
+							Password
+						</label>
+						<input type="password" name="password" class="form-control" id="password" autocomplete="off">
+					</div>
+					<button class="btn btn-primary btn-md" type="submit" name="SubmitButton" value="Logon to ILLiad">Logon to ILLiad</button>
+			</form>
+
+            <div class="first-time-link">
+                <a href="http://library.ua.edu/">
+                    <span aria-hidden="true" class="fas fa-user-plus"></span> UA Libraries
+                </a>
+            </div>
+             <div class="first-time-link">
+                <a href="https://www.lib.ua.edu/using-the-library/interlibrary-loan/">
+                    <span aria-hidden="true" class="fas fa-user-plus"></span> ILL Home
+                </a>
+            </div>
+             <div class="first-time-link">
+                <a href="mailto:illstaff@ua.edu" >
+                    <span aria-hidden="true" class="fas fa-user-plus"></span> email the ILL staff
+                </a>
+            </div>
+	
+		</main>
+
+		<#INCLUDE filename="include_footer.html">
+
+	</div>
+
+</body>
+</html>
